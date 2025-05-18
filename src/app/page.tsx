@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect } from "react";
 import GithubCardSkew from "@/components/animata/card/github-card-skew";
+import LogoCircle from "@/components/LogoCircle";
 
 export default function Home() {
   useEffect(() => {
@@ -46,10 +47,10 @@ export default function Home() {
   return (
     <main className="relative min-h-screen bg-white text-black px-6 py-24 overflow-hidden">
       {/* Color Blobs */}
-      <div className="absolute top-20 right-0 w-[1500px] h-[500px] bg-yellow-200 opacity-30 rounded-full blur-3xl z-0" />
-      <div className="absolute bottom-0 right-40 w-[1600px] h-[600px] bg-green-200 opacity-30 rounded-full blur-3xl z-0" />
-      <div className="absolute top-0 left-0 w-[1500px] h-[600px] bg-pink-300 opacity-30 rounded-full blur-3xl z-0" />
-      <div className="absolute bottom-10 left-40 w-[1500px] h-[500px] bg-blue-200 opacity-30 rounded-full blur-3xl z-0" />
+      <div className="absolute top-20 right-0 w-[1500px] h-[500px] bg-yellow-200 opacity-50 rounded-full blur-3xl z-0" />
+      <div className="absolute bottom-0 right-40 w-[1600px] h-[600px] bg-green-200 opacity-50 rounded-full blur-3xl z-0" />
+      <div className="absolute top-0 left-0 w-[1500px] h-[600px] bg-pink-300 opacity-50 rounded-full blur-3xl z-0" />
+      <div className="absolute bottom-10 left-40 w-[1500px] h-[500px] bg-blue-200 opacity-50 rounded-full blur-3xl z-0" />
 
       <div className="relative z-[10] grid grid-cols-1 lg:grid-cols-3 gap-12 max-w-7xl mx-auto">
       {/* Left: Work Experience */}
@@ -57,19 +58,19 @@ export default function Home() {
           <h2 className="text-3xl font-bold mb-8">Work Experience</h2>
           <div className="flex flex-col gap-6">
             <GithubCardSkew cardInfo={{
-              title: "skinID: Congressional App Challenge",
-              date: "2023",
-              description: "A 3D card effect using React and CSS transforms.",
+              title: "Backend Software Engineer Intern",
+              date: "Cube Exchange | Summer 2024",
+              description: "lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
             }} />
             <GithubCardSkew cardInfo={{
-              title: "Solana Season Hackathon 2021",
-              date: "2023",
-              description: "A 3D card effect using React and CSS transforms.",
+              title: "Full-Stack Software Engineer Intern",
+              date: "NATION | Summer 2023",
+              description: "lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
             }} />
             <GithubCardSkew cardInfo={{
-              title: "skinID",
-              date: "2023",
-              description: "A 3D card effect using React and CSS transforms.",
+              title: "Founder",
+              date: "Halo | 2024 - Present",
+              description: "lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
             }} />
           </div>
         </section>
@@ -96,25 +97,27 @@ export default function Home() {
               Contact Me
             </Link>
           </div>
+            <LogoCircle/>
+          
         </div>
 
         <section>
           <h2 className="text-3xl font-bold mb-8">Projects & Awards</h2>
           <div className="flex flex-col gap-6">
             <GithubCardSkew cardInfo={{
-              title: "skinID: Congressional App Challenge",
-              date: "2023",
-              description: "A 3D card effect using React and CSS transforms.",
+              title: "3rd Place Solana Season Hackathon 2021",
+              date: "Bubl | June 2021",
+              description: "lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
             }} />
             <GithubCardSkew cardInfo={{
-              title: "Solana Season Hackathon 2021",
-              date: "2023",
-              description: "A 3D card effect using React and CSS transforms.",
+              title: "1st Place Congressional App Challenge 2020",
+              date: "skinID | May 2020",
+              description: "lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
             }} />
             <GithubCardSkew cardInfo={{
-              title: "skinID",
-              date: "2023",
-              description: "A 3D card effect using React and CSS transforms.",
+              title: "AYSO Region 163, Player of the Year",
+              date: "2015/16 Season",
+              description: "lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
             }} />
           </div>
         </section>
