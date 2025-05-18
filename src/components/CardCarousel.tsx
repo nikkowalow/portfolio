@@ -10,12 +10,12 @@ export default function CardCarousel() {
     <div className="relative flex justify-start items-center -space-x-[300px] perspective-[900px] h-[685px]">
       {[...Array(6)].map((_, i) => (
         <Card
-  key={i}
-  index={i}
-  isExpanded={expandedCard === i}
-  onExpand={() => setExpandedCard(i)}
-  onCollapse={() => setExpandedCard(null)}
-/>
+            key={i}
+            index={i}
+            isExpanded={expandedCard === i}
+            onExpand={() => setExpandedCard(i)}
+            onCollapse={() => setExpandedCard(null)}
+        />
 
       ))}
     </div>
