@@ -1,6 +1,8 @@
-import "./globals.css";
+import "./globals.css"
+import "@/styles/fonts.css";
+import { Inter } from "next/font/google";
 
-
+const inter = Inter({ subsets: ["latin"] });
 export const metadata = {
   title: "Nikko Kowalow",
   description: "Dev portfolio.",
@@ -15,9 +17,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <head>
             <link rel="logo" href="/logo.png" />
         </head>
-        <body>
-          {children}
-        </body>
+        <body className={inter.className}>{children}</body>
       </html>
     );
   }

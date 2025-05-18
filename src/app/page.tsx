@@ -1,10 +1,14 @@
 "use client";
 import Link from "next/link";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import GithubCardSkew from "@/components/animata/card/github-card-skew";
 import LogoCircle from "@/components/LogoCircle";
-
+import '../styles/fonts.css';
+import CardCarousel from "@/components/CardCarousel";
+import Card from "@/components/Card";
 export default function Home() {
+  const classes = "font-blur"
+const [expandedCard, setExpandedCard] = useState<number | null>(null);
   type TiltCardElement = HTMLElement & {
     _boundMove?: (e: MouseEvent) => void;
     _boundReset?: () => void;
@@ -50,17 +54,17 @@ export default function Home() {
   return (
     <main className="relative min-h-screen bg-white text-black px-6 py-24 overflow-hidden">
       {/* Gradient Background Blobs */}
-      <div className="absolute top-20 right-0 w-[1500px] h-[500px] bg-yellow-200 opacity-50 rounded-full blur-3xl z-0" />
-      <div className="absolute bottom-0 right-40 w-[1600px] h-[600px] bg-green-200 opacity-50 rounded-full blur-3xl z-0" />
-      <div className="absolute top-0 left-0 w-[1500px] h-[600px] bg-pink-300 opacity-50 rounded-full blur-3xl z-0" />
-      <div className="absolute bottom-10 left-40 w-[1500px] h-[500px] bg-blue-200 opacity-50 rounded-full blur-3xl z-0" />
+      <div className="absolute top-20 right-0 w-[1500px] h-[500px] bg-yellow-200 opacity-60 rounded-full blur-3xl z-0" />
+      <div className="absolute bottom-0 right-40 w-[1600px] h-[600px] bg-green-200 opacity-60 rounded-full blur-3xl z-0" />
+      <div className="absolute top-0 left-0 w-[1500px] h-[600px] bg-pink-300 opacity-60 rounded-full blur-3xl z-0" />
+      <div className="absolute bottom-10 left-40 w-[1500px] h-[500px] bg-blue-200 opacity-60 rounded-full blur-3xl z-0" />
 
-      <div className="relative z-10 flex flex-row gap-16 max-w-7xl mx-auto">
-        {/* Left Section: Name + Logo Circle */}
-        <div className="flex flex-col items-start justify-start">
-          <div className="mb-8">
-            <h1 className="text-5xl mb-4 font-blur tracking-tight text-black">
-              Nikko Kowalow
+      <div className="relative z-10 flex flex-row gap-8 w-full px-[150px]">
+      {/* Left Section: Name + Logo Circle */}
+        <div className="flex flex-col items-start justify-start max-w-3xl">
+        <div className="mb-8">
+            <h1 style={{ fontFamily: 'Blur, sans-serif', fontSize: '60px' }}>
+                Nikko Kowalow
             </h1>
             <p className="text-xl text-gray-600 mb-8 max-w-md">
               Software engineer. Builder. Visionary. Turning bold ideas into scalable products.
@@ -85,36 +89,8 @@ export default function Home() {
         </div>
 
         {/* Right Section: 3D Skewed Cards */}
-        <div className="relative flex justify-start items-center -space-x-[700px] perspective-[1800px] h-[685px]">
-
-          {[...Array(6)].map((_, i) => (
-            <div
-              key={i}
-              className="top-1/2 -translate-y-1/2 group relative w-200 h-160 shrink-0 bg-white/10 backdrop-blur-md border border-dashed border-black/30 rounded-2xl shadow-lg transform-gpu ease-in-out transition-transform duration-350 hover:rotate-y-0"
-              style={{
-                transform: "rotateY(60deg)",
-              }}
-              onMouseEnter={(e) => {
-                const card = e.currentTarget as HTMLDivElement;
-                card.style.transform += " scale(1.08)";
-                // card.style.zIndex = "10";
-              }}
-              
-              onMouseLeave={(e) => {
-                const card = e.currentTarget as HTMLDivElement;
-                // Reset to original rotation only, preserving the skew
-                card.style.transform = "rotateY(60deg)";
-                card.style.zIndex = "0";
-              }}
-            >
-              <div className="p-4 text-black">
-                <h3 className="text-lg font-bold mb-2">Card Title</h3>
-                <p className="text-sm text-gray-700">Short description here.</p>
-              </div>
-            </div>
-          ))}
+        <CardCarousel />
         </div>
-      </div>
     </main>
   );
 }
