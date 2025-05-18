@@ -5,6 +5,10 @@ import GithubCardSkew from "@/components/animata/card/github-card-skew";
 import LogoCircle from "@/components/LogoCircle";
 
 export default function Home() {
+type TiltCardElement = HTMLElement & {
+    _boundMove?: (e: MouseEvent) => void;
+    _boundReset?: () => void;
+    };
   useEffect(() => {
     const cards = document.querySelectorAll<HTMLElement>(".tilt-card");
 
@@ -25,22 +29,24 @@ export default function Home() {
     };
 
     cards.forEach((card) => {
-      const boundMove = (e: MouseEvent) => handleMove(e, card);
-      const boundReset = () => reset(card);
-
-      card.addEventListener("mousemove", boundMove);
-      card.addEventListener("mouseleave", boundReset);
-
-      (card as any)._boundMove = boundMove;
-      (card as any)._boundReset = boundReset;
-    });
-
-    return () => {
-      cards.forEach((card) => {
-        card.removeEventListener("mousemove", (card as any)._boundMove);
-        card.removeEventListener("mouseleave", (card as any)._boundReset);
+        const tiltCard = card as TiltCardElement;
+        const boundMove = (e: MouseEvent) => handleMove(e, tiltCard);
+        const boundReset = () => reset(tiltCard);
+      
+        tiltCard.addEventListener("mousemove", boundMove);
+        tiltCard.addEventListener("mouseleave", boundReset);
+      
+        tiltCard._boundMove = boundMove;
+        tiltCard._boundReset = boundReset;
       });
-    };
+      
+      return () => {
+        cards.forEach((card) => {
+          const tiltCard = card as TiltCardElement;
+          tiltCard.removeEventListener("mousemove", tiltCard._boundMove!);
+          tiltCard.removeEventListener("mouseleave", tiltCard._boundReset!);
+        });
+      };
   }, []);
 
   return (

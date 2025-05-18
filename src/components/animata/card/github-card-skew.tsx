@@ -36,10 +36,8 @@ type CardInfo = {
 };
 
 export default function GithubCardSkew({
-  className,
   cardInfo,
 }: {
-  className?: string;
   cardInfo?: CardInfo;
 }) {
   const containerRef = useRef<HTMLDivElement>(null);
