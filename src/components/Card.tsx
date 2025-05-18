@@ -1,18 +1,32 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import Image from "next/image";
+
+type ImageProps = {
+    src: string;
+    alt: string;
+    width: number;
+    height: number;
+}
 
 export default function Card({
-  index,
-  isExpanded,
-  onExpand,
-  onCollapse,
-}: {
-  index: number;
-  isExpanded: boolean;
-  onExpand: () => void;
-  onCollapse: () => void;
-}) {
+    index,
+    title,
+    description,
+    image,
+    isExpanded,
+    onExpand,
+    onCollapse,
+  }: {
+    index: number;
+    title: string;
+    description: string;
+    image: ImageProps;
+    isExpanded: boolean;
+    onExpand: () => void;
+    onCollapse: () => void;
+  }) {
   const ref = useRef<HTMLDivElement>(null);
 
   const baseTransform = isExpanded
@@ -32,9 +46,9 @@ export default function Card({
     <div
       ref={ref}
       onClick={() => (isExpanded ? onCollapse() : onExpand())}
-      className="top-1/2 group absolute w-[500px] h-[600px] shrink-0 transform-gpu ease-in-out transition-transform duration-500"
+      className="top-1/2 group absolute w-[600px] h-[600px] shrink-0 transform-gpu ease-in-out transition-transform duration-500"
       style={{
-        left: isExpanded ? "50%" : `${index * 100}px`,
+        left: `${index * 100}px`,        
         transform: baseTransform,
         zIndex: isExpanded ? "50" : undefined,
         cursor: "pointer",
@@ -69,8 +83,18 @@ export default function Card({
             transform: `translateZ(${cardThickness / 2}px)`,
           }}
         >
-          <h3 className="text-lg font-bold mb-2 text-black">Card Title</h3>
-          <p className="text-sm text-gray-700">Short description here.</p>
+          <Image
+            src={image.src}
+            alt={"Solana"}
+            width={image.width}
+            height={image.height}
+            className="transition-transform hover:scale-125"
+            unoptimized
+            priority
+          />
+
+          <h3 className="text-lg font-bold mb-2 text-black">{title}</h3>
+          <p className="text-sm text-gray-700">{description}</p>
         </div>
 
         <div
@@ -90,45 +114,11 @@ export default function Card({
         />
         ))}
 
-        {/* RIGHT */}
-        {/* <div
-          className="absolute h-full"
-          style={{
-            width: `${cardThickness}px`,
-            right: `-${cardThickness / 2}px`,
-            transform: `rotateY(90deg) translateZ(${150}px)`,
-            background: "rgba(0,0,0,0.0)",
-          }}
-        /> */}
-
-        {/* LEFT */}
-        {/* <div
-          className="fixed h-full"
-          style={{
-            width: `${cardThickness}px`,
-            left: `-${cardThickness / 2}px`,
-            transform: `rotateY(-90deg) translateZ(${150}px)`,
-            background: "rgba(0,0,0,0.0)",
-          }}
-        /> */}
-
-        {/* TOP */}
-        {/* <div
-          className="absolute w-full"
-          style={{
-            height: `${cardThickness}px`,
-            top: `-${cardThickness / 2}px`,
-            transform: `rotateX(90deg) translateZ(${200}px)`,
-            background: "rgba(255,255,255,0.0)",
-          }}
-        /> */}
-
-        {/* BOTTOM */}
         <div
-          className="absolute w-full blur-lg"
+          className="absolute w-full blur-xl"
           style={{
             height: `${cardThickness}px`,
-            bottom: `-${cardThickness / 2}px`,
+            bottom: `${100}px`,
             transform: `rotateX(-90deg) translateZ(${200}px)`,
             background: "rgba(0,0,0,0.3)",
           }}
