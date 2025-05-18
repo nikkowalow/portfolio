@@ -2,13 +2,19 @@ import "./globals.css";
 
 
 export const metadata = {
-  title: "Halo | Event Ticketing Platform",
-  description: "Seamless event creation and ticketing in one app",
+  title: "Nikko Kowalow",
+  description: "Dev portfolio.",
+  icons: {
+    icon: "/logo.ico",
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
     return (
       <html lang="en">
+        <head>
+            <link rel="logo" href="/logo.png" />
+        </head>
         <body>
           {children}
         </body>
