@@ -73,9 +73,9 @@ export default function GithubCardSkew({
       ref={containerRef}
       onClick={handleClick}
       className={cn(
-        "relative flex flex-col gap-4 rounded-3xl border border-dashed border-black/60 bg-white/10 backdrop-blur-md p-10 text-black shadow-xl transition-all duration-300 ease-in-out",
+        "relative flex flex-col gap-4 rounded-3xl border border-dashed border-black/60 bg-white/10 backdrop-blur-md p-10 text-black shadow-2xl transition-all duration-300 ease-in-out overflow-hidden",
         expanded &&
-          "fixed display-flex top-0 left-0 right-0 bottom-0  z-[100] w-[90vw] h-[80vh] max-w-4xl overflow-y-auto  -translate-y-1/2 bg-white text-black"
+          "fixed top-0 left-0 right-0 bottom-0 z-[100] w-[90vw] h-[80vh] max-w-4xl m-auto overflow-y-auto justify-center items-center"
       )}
       style={{
         transform: expanded
@@ -105,11 +105,17 @@ export default function GithubCardSkew({
         document.body.style.cursor = "url('/cursor.png') 16 16, auto";
       }}
     >
-      <div className="pointer-events-none absolute inset-0 rounded-3xl bg-gradient-to-br from-white/20 to-white/5 opacity-100" />
+      {/* Glossy overlays */}
+      <div className="pointer-events-none absolute inset-0 rounded-3xl bg-gradient-to-br from-white/40 to-white/10 opacity-70 mix-blend-soft-light z-0" />
+      <div className="pointer-events-none absolute -top-1/2 left-0 w-full h-full rotate-12 bg-white/20 blur-2xl opacity-10 z-0" />
+      <div className="pointer-events-none absolute inset-0 rounded-3xl bg-gradient-to-br from-white/20 to-white/5 opacity-100 z-0" />
 
+      {/* Card content */}
       <p className="text-2xl font-bold z-10 relative">{cardInfo?.title}</p>
       <p className="text-sm text-gray-600 z-10 relative">{cardInfo?.date}</p>
-      <span className="text-sm text-black z-10 relative">{cardInfo?.description}</span>
+      <span className="text-sm text-black z-10 relative">
+        {cardInfo?.description}
+      </span>
 
       {expanded && (
         <div className="mt-6 text-sm text-gray-800 z-10 relative">
@@ -128,13 +134,11 @@ export default function GithubCardSkew({
             e.stopPropagation();
             setExpanded(false);
           }}
-          className="absolute top-4 right-4 text-xl font-bold text-gray-700 hover:text-black"
+          className="absolute top-4 right-4 text-xl font-bold text-gray-700 hover:text-black z-10"
         >
           ×
         </button>
       )}
-
-      
     </div>
   );
 }

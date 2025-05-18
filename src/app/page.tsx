@@ -59,7 +59,7 @@ type TiltCardElement = HTMLElement & {
 
       <div className="relative z-[10] grid grid-cols-1 lg:grid-cols-3 gap-12 max-w-7xl mx-auto">
       {/* Left: Work Experience */}
-        <section>
+        {/* <section>
           <h2 className="text-3xl font-bold mb-8">Work Experience</h2>
           <div className="flex flex-col gap-6">
             <GithubCardSkew cardInfo={{
@@ -78,7 +78,31 @@ type TiltCardElement = HTMLElement & {
               description: "lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
             }} />
           </div>
-        </section>
+        </section> */}
+        <div className="relative flex justify-center -space-x-[720px] perspective-[1800px]">
+        {[...Array(6)].map((_, i) => (
+    <div
+      key={i}
+      className="group relative w-200 h-180 shrink-0 bg-white/10 backdrop-blur-md border border-dashed border-black/30 rounded-2xl shadow-lg transform-gpu transition-transform duration-500 hover:rotate-y-0"
+      style={{
+        transform: "rotateY(50deg)",
+      }}
+      onMouseEnter={(e) => {
+        (e.currentTarget as HTMLDivElement).style.transform = "rotateY(0deg)";
+        (e.currentTarget as HTMLDivElement).style.zIndex = "10";
+      }}
+      onMouseLeave={(e) => {
+        (e.currentTarget as HTMLDivElement).style.transform = "rotateY(50deg)";
+        (e.currentTarget as HTMLDivElement).style.zIndex = "1";
+      }}
+    >
+      <div className="p-4 text-black">
+        <h3 className="text-lg font-bold mb-2">Card Title</h3>
+        <p className="text-sm text-gray-700">Short description here.</p>
+      </div>
+    </div>
+  ))}
+</div>
         {/* Center: Name, Bio, Resume, Pic */}
         <div className="flex flex-col items-center text-center">
           <h1 className="text-5xl mb-4 font-blur tracking-tight text-black">
