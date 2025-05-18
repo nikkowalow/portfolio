@@ -1,5 +1,6 @@
 import "./globals.css";
 import { Inter } from "next/font/google";
+import CustomCursor from "@/components/CustomCursor";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -8,14 +9,12 @@ export const metadata = {
   description: "Seamless event creation and ticketing in one app",
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
-  return (
-    <html lang="en" className="bg-black text-white">
-      <body className={inter.className}>{children}</body>
-    </html>
-  );
-}
+export default function RootLayout({ children }: { children: React.ReactNode }) {
+    return (
+      <html lang="en">
+        <body>
+          {children}
+        </body>
+      </html>
+    );
+  }

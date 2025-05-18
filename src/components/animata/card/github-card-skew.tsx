@@ -50,8 +50,8 @@ export default function GithubCardSkew({ className, cardInfo }: { className?: st
       centerY: height / 2,
       currentX: x,
       currentY: y,
-      maxRotationX: 16,
-      maxRotationY: 20,
+      maxRotationX: 22,
+      maxRotationY: 28,
     });
 
     containerRef.current.style.setProperty("--x", `${rotationX}deg`);
@@ -64,28 +64,30 @@ export default function GithubCardSkew({ className, cardInfo }: { className?: st
     <div
         ref={containerRef}
         className={cn(
-            "relative flex max-w-80 transform-gpu flex-col gap-4 rounded-3xl border border-white/10 bg-white/10 backdrop-blur-md p-10 text-black shadow-2xl shadow-black/30 transition-transform ease-linear will-change-transform overflow-hidden",
+            "relative flex max-w-80 transform-gpu flex-col gap-4 rounded-3xl border-[1] border-dashed border-black-500/90 bg-white/10 backdrop-blur-md p-10 text-black shadow-2xl shadow-black/30 transition-transform ease-linear will-change-transform overflow-hidden",
             className
-        )}
+          )}
         style={{
             transform: "perspective(400px) rotateX(var(--x)) rotateY(var(--y))",
-            transitionDuration: "50ms",
+            transitionDuration: "30ms",
         }}
         onMouseEnter={() => {
             resetRef.current = setTimeout(() => {
             if (containerRef.current) {
-                containerRef.current.style.transitionDuration = "0ms";
+                containerRef.current.style.transitionDuration = "30ms";
             }
             }, 30);
+            document.body.style.cursor = "url('/cursor-hover.png') 16 16, auto"
         }}
         onMouseLeave={() => {
             if (resetRef.current !== null) {
             clearTimeout(resetRef.current);
             }
             if (containerRef.current) {
-            containerRef.current.style.transitionDuration = "250ms";
+            containerRef.current.style.transitionDuration = "200ms";
             containerRef.current.style.setProperty("--x", "0deg");
             containerRef.current.style.setProperty("--y", "0deg");
+            document.body.style.cursor = "url('/cursor.png') 16 16, auto"
             }
         }}
     >

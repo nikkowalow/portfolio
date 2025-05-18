@@ -75,7 +75,7 @@ export default function Home() {
         </section>
         {/* Center: Name, Bio, Resume, Pic */}
         <div className="flex flex-col items-center text-center">
-          <h1 className="text-5xl sm:text-6xl mb-4 font-blur tracking-tight text-black">
+          <h1 className="text-5xl mb-4 font-blur tracking-tight text-black">
             Nikko Kowalow
           </h1>
           <p className="text-xl text-gray-600 mb-8">
@@ -99,7 +99,7 @@ export default function Home() {
         </div>
 
         <section>
-          <h2 className="text-3xl font-bold mb-8">Projects</h2>
+          <h2 className="text-3xl font-bold mb-8">Projects & Awards</h2>
           <div className="flex flex-col gap-6">
             <GithubCardSkew cardInfo={{
               title: "skinID: Congressional App Challenge",
