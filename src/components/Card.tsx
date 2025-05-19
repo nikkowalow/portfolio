@@ -4,31 +4,31 @@ import { useEffect, useRef } from "react";
 import Image from "next/image";
 
 type ImageProps = {
-    src: string;
-    alt: string;
-    width: number;
-    height: number;
-}
+  src: string;
+  alt: string;
+  width: number;
+  height: number;
+};
 
 export default function Card({
-    index,
-    title,
-    description,
-    image,
-    isExpanded,
-    onExpand,
-    onCollapse,
-    initialLoad
-  }: {
-    index: number;
-    title: string;
-    description: string;
-    image: ImageProps;
-    isExpanded: boolean;
-    onExpand: () => void;
-    onCollapse: () => void;
-    initialLoad: boolean;
-  }) {
+  index,
+  title,
+  description,
+  image,
+  isExpanded,
+  onExpand,
+  onCollapse,
+  initialLoad,
+}: {
+  index: number;
+  title: string;
+  description: string;
+  image: ImageProps;
+  isExpanded: boolean;
+  onExpand: () => void;
+  onCollapse: () => void;
+  initialLoad: boolean;
+}) {
   const ref = useRef<HTMLDivElement>(null);
 
   const baseTransform = isExpanded
@@ -48,12 +48,14 @@ export default function Card({
     <div
       ref={ref}
       onClick={() => (isExpanded ? onCollapse() : onExpand())}
-      className=" top-1/2 group absolute w-[600px] h-[600px] shrink-0 transform-gpu ease-in-out transition-transform duration-500"
+      className=" top-1/2 group absolute w-[600px] h-[600px] shrink-0 transform-gpu ease-in-out transition-transform duration-300"
       style={{
         left: `calc(${index * 4}vw)`,
-        width: "clamp(280px, 40vw, 600px)",
+        width: "clamp(180px, 20vw, 600px)",
         height: "clamp(300px, 50vh, 600px)",
-        transform: initialLoad ? baseTransform : "translateY(-200%) rotateX(30deg) scale(0.8)",
+        transform: initialLoad
+          ? baseTransform
+          : "translateY(-200%) rotateX(30deg) scale(0.8)",
         opacity: initialLoad ? 1 : 0,
         // transition: "transform 0.8s ease-out, opacity 0.5s ease-out",
         // transitionDelay: `${index * 100}ms`,
@@ -66,7 +68,7 @@ export default function Card({
       onMouseEnter={(e) => {
         if (!isExpanded) {
           const card = e.currentTarget as HTMLDivElement;
-          card.style.transform += " scale(1.1)";
+          card.style.transform += " scale(1.12)";
         }
         document.body.style.cursor = "url('/cursor-hover.png'), auto";
       }}
@@ -94,7 +96,7 @@ export default function Card({
         >
           <Image
             src={image.src}
-            alt={"Solana"}
+            alt={"temp alt"}
             width={image.width}
             height={image.height}
             className=" max-w-[250px]  object-contain transition-transform hover:scale-110"
@@ -107,19 +109,19 @@ export default function Card({
         </div>
 
         <div
-            className="absolute w-full h-full border border-black/20 rounded-2xl backdrop-blur-xs"
-            style={{
+          className="absolute w-full h-full border border-black/20 rounded-2xl backdrop-blur-xs"
+          style={{
             transform: `rotateY(180deg) translateZ(10px)`,
-            }}
+          }}
         />
         {/* {Array.from({ length: 38 }).map((_, i) => (
-        <div
+          <div
             key={`back-layer-${i}`}
             className="absolute w-full h-full border border-white/30 rounded-2xl"
             style={{
-            transform: `rotateY(180deg) translateZ(${(20 - (1*i))/2}px)`,
+              transform: `rotateY(180deg) translateZ(${(20 - 1 * i) / 2}px)`,
             }}
-        />
+          />
         ))} */}
 
         <div
