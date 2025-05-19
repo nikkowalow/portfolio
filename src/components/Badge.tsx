@@ -39,7 +39,7 @@ export default function App() {
       >
         {/* <Stats /> */}
         <ambientLight intensity={Math.PI} />
-        <Physics interpolate gravity={[0, -30, 0]} timeStep={1 / 60}>
+        <Physics interpolate gravity={[0, -40, 0]} timeStep={1 / 60}>
           <Band />
         </Physics>
         <Environment
