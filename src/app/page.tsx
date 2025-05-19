@@ -90,7 +90,7 @@ export default function Home() {
               </Link>
             </div>
           </div>
-          <LogoCircle />
+          {/* <LogoCircle /> */}
         </div>
 
         {/* Right Section: 3D Skewed Cards */}

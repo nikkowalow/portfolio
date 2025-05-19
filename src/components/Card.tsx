@@ -48,7 +48,7 @@ export default function Card({
     <div
       ref={ref}
       onClick={() => (isExpanded ? onCollapse() : onExpand())}
-      className="top-1/2 group absolute w-[600px] h-[600px] shrink-0 transform-gpu ease-in-out transition-transform duration-500"
+      className=" top-1/2 group absolute w-[600px] h-[600px] shrink-0 transform-gpu ease-in-out transition-transform duration-500"
       style={{
         left: `calc(${index * 4}vw)`,
         width: "clamp(280px, 40vw, 600px)",
@@ -87,7 +87,7 @@ export default function Card({
       >
         {/* FRONT */}
         <div
-          className="shadow-xl absolute w-full h-full bg-gradient-to-br from-white/10 to-white/10 border border-black/20 rounded-2xl backdrop-blur-md p-4"
+          className="drop-shadow-[0_8px_10px_rgba(0,0,0,0.2)] shadow-xl absolute w-full h-full bg-gradient-to-br from-white/10 to-white/10 border border-black/20 rounded-2xl backdrop-blur-md p-4"
           style={{
             transform: `translateZ(${cardThickness / 2}px)`,
           }}
@@ -112,16 +112,15 @@ export default function Card({
             transform: `rotateY(180deg) translateZ(10px)`,
             }}
         />
-        {/* BACK */}
-        {Array.from({ length: 22 }).map((_, i) => (
+        {/* {Array.from({ length: 38 }).map((_, i) => (
         <div
             key={`back-layer-${i}`}
             className="absolute w-full h-full border border-white/30 rounded-2xl"
             style={{
-            transform: `rotateY(180deg) translateZ(${10 - i}px)`,
+            transform: `rotateY(180deg) translateZ(${(20 - (1*i))/2}px)`,
             }}
         />
-        ))}
+        ))} */}
 
         <div
           className="absolute w-full blur-xl"
