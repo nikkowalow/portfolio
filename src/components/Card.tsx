@@ -18,6 +18,7 @@ export default function Card({
     isExpanded,
     onExpand,
     onCollapse,
+    initialLoad
   }: {
     index: number;
     title: string;
@@ -26,6 +27,7 @@ export default function Card({
     isExpanded: boolean;
     onExpand: () => void;
     onCollapse: () => void;
+    initialLoad: boolean;
   }) {
   const ref = useRef<HTMLDivElement>(null);
 
@@ -48,12 +50,17 @@ export default function Card({
       onClick={() => (isExpanded ? onCollapse() : onExpand())}
       className="top-1/2 group absolute w-[600px] h-[600px] shrink-0 transform-gpu ease-in-out transition-transform duration-500"
       style={{
-        left: `${index * 100}px`,        
-        transform: baseTransform,
+        left: `calc(${index * 4}vw)`,
+        width: "clamp(280px, 40vw, 600px)",
+        height: "clamp(300px, 50vh, 600px)",
+        transform: initialLoad ? baseTransform : "translateY(-200%) rotateX(30deg) scale(0.8)",
+        opacity: initialLoad ? 1 : 0,
+        // transition: "transform 0.8s ease-out, opacity 0.5s ease-out",
+        // transitionDelay: `${index * 100}ms`,
         zIndex: isExpanded ? "50" : undefined,
         cursor: "pointer",
         transformStyle: "preserve-3d",
-        backfaceVisibility: "hidden",
+        backfaceVisibility: "visible",
         willChange: "transform",
       }}
       onMouseEnter={(e) => {
@@ -61,6 +68,7 @@ export default function Card({
           const card = e.currentTarget as HTMLDivElement;
           card.style.transform += " scale(1.1)";
         }
+        document.body.style.cursor = "url('/cursor-hover.png'), auto";
       }}
       onMouseLeave={(e) => {
         if (!isExpanded) {
@@ -68,6 +76,7 @@ export default function Card({
           card.style.transform = "rotateY(30deg) translateY(-50%)";
           card.style.zIndex = "0";
         }
+        document.body.style.cursor = "url('/cursor.png'), auto";
       }}
     >
       <div
@@ -88,7 +97,7 @@ export default function Card({
             alt={"Solana"}
             width={image.width}
             height={image.height}
-            className="transition-transform hover:scale-125"
+            className=" max-w-[250px]  object-contain transition-transform hover:scale-110"
             unoptimized
             priority
           />

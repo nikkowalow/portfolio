@@ -1,14 +1,11 @@
 "use client";
 import Link from "next/link";
-import { useEffect, useState } from "react";
-import GithubCardSkew from "@/components/animata/card/github-card-skew";
+import { useEffect } from "react";
+// import GithubCardSkew from "@/components/animata/card/github-card-skew";
 import LogoCircle from "@/components/LogoCircle";
 import '../styles/fonts.css';
 import CardCarousel from "@/components/CardCarousel";
-import Card from "@/components/Card";
 export default function Home() {
-  const classes = "font-blur"
-const [expandedCard, setExpandedCard] = useState<number | null>(null);
   type TiltCardElement = HTMLElement & {
     _boundMove?: (e: MouseEvent) => void;
     _boundReset?: () => void;
@@ -52,20 +49,28 @@ const [expandedCard, setExpandedCard] = useState<number | null>(null);
   }, []);
 
   return (
-    <main className="relative min-h-screen bg-white text-black px-6 py-24 overflow-hidden">
+    <main className="min-h-screen w-full px-4 md:px-12 lg:px-32 py-12 bg-white">
+
       {/* Gradient Background Blobs */}
       <div className="absolute top-20 right-0 w-[1500px] h-[500px] bg-yellow-200 opacity-60 rounded-full blur-3xl z-0" />
       <div className="absolute bottom-0 right-40 w-[1600px] h-[600px] bg-green-200 opacity-60 rounded-full blur-3xl z-0" />
       <div className="absolute top-0 left-0 w-[1500px] h-[600px] bg-pink-300 opacity-60 rounded-full blur-3xl z-0" />
       <div className="absolute bottom-10 left-40 w-[1500px] h-[500px] bg-blue-200 opacity-60 rounded-full blur-3xl z-0" />
 
-      <div className="relative z-10 flex flex-row gap-8 w-full px-[150px]">
+      <div className="relative z-10 flex flex-row gap-8 w-full max-w-[1600px] mx-auto px-4 md:px-12 lg:px-20">
       {/* Left Section: Name + Logo Circle */}
-        <div className="flex flex-col items-start justify-start max-w-3xl">
+      <div className="flex flex-col items-start justify-start max-w-3xl flex-shrink-0">
         <div className="mb-8">
-            <h1 style={{ fontFamily: 'Blur, sans-serif', fontSize: '60px' }}>
-                Nikko Kowalow
-            </h1>
+        <h1
+            style={{
+                fontFamily: 'Blur, sans-serif',
+                fontSize: 'clamp(2rem, 6vw, 4.5rem)',
+                color: 'black',
+            }}
+        >
+            Nikko Kowalow
+        </h1>
+
             <p className="text-xl text-gray-600 mb-8 max-w-md">
               Software engineer. Builder. Visionary. Turning bold ideas into scalable products.
             </p>
@@ -79,7 +84,7 @@ const [expandedCard, setExpandedCard] = useState<number | null>(null);
               </a>
               <Link
                 href="/contact"
-                className="border border-black px-6 py-3 rounded-lg hover:bg-black hover:text-white transition"
+                className="text-black border border-black px-6 py-3 rounded-lg hover:bg-black hover:text-white transition"
               >
                 Contact Me
               </Link>
