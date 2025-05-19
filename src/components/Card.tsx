@@ -50,20 +50,19 @@ export default function Card({
       onClick={() => (isExpanded ? onCollapse() : onExpand())}
       className=" top-1/2 group absolute w-[600px] h-[600px] shrink-0 transform-gpu ease-in-out transition-transform duration-300"
       style={{
-        left: `calc(${index * 4}vw)`,
+        left: isExpanded ? "10vw" : `calc(${index * 4}vw)`, // consistent expand position
         width: "clamp(180px, 20vw, 600px)",
         height: "clamp(300px, 50vh, 600px)",
         transform: initialLoad
           ? baseTransform
           : "translateY(-200%) rotateX(30deg) scale(0.8)",
         opacity: initialLoad ? 1 : 0,
-        // transition: "transform 0.8s ease-out, opacity 0.5s ease-out",
-        // transitionDelay: `${index * 100}ms`,
         zIndex: isExpanded ? "50" : undefined,
         cursor: "pointer",
         transformStyle: "preserve-3d",
         backfaceVisibility: "visible",
-        willChange: "transform",
+        willChange: "transform, left",
+        transition: "left 0.5s ease, transform 0.5s ease, opacity 0.5s ease",
       }}
       onMouseEnter={(e) => {
         if (!isExpanded) {
