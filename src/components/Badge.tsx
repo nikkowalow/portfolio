@@ -32,7 +32,7 @@ export default function App() {
     <div className="w-full h-full relative z-10">
       <Canvas
         frameloop="always"
-        dpr={[1, 1.5]}
+        dpr={[1, 1]}
         camera={{ position: [0, 0, 12], fov: 25 }}
         gl={{ alpha: true }}
         style={{ width: "100%", height: "100%", background: "transparent" }}
@@ -42,12 +42,7 @@ export default function App() {
         <Physics interpolate gravity={[0, -40, 0]} timeStep={1 / 60}>
           <Band />
         </Physics>
-        <Environment
-          resolution={512}
-          //   blur={0}
-          background={false}
-          preset="forest"
-        >
+        <Environment resolution={512} background={false}>
           {/* <color attach="background" args={["white"]} /> */}
           <Lightformer
             intensity={10}
@@ -61,14 +56,14 @@ export default function App() {
             color="green"
             position={[-1, -1, 1]}
             rotation={[0, 0, Math.PI / 3]}
-            scale={[100, 0.1, 1]}
+            scale={[100, 0.3, 1]}
           />
           <Lightformer
             intensity={10}
             color="pink"
             position={[1, 1, 1]}
             rotation={[0, 0, Math.PI / 3]}
-            scale={[100, 0.1, 1]}
+            scale={[100, 0.3, 1]}
           />
           <Lightformer
             intensity={10}

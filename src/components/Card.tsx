@@ -114,16 +114,15 @@ export default function Card({
             transform: `rotateY(180deg) translateZ(10px)`,
           }}
         />
-        {/* {Array.from({ length: 38 }).map((_, i) => (
+        {Array.from({ length: 20 }).map((_, i) => (
           <div
             key={`back-layer-${i}`}
-            className="absolute w-full h-full border border-white/30 rounded-2xl"
+            className="absolute w-full h-full border border-white/70 rounded-2xl"
             style={{
-              transform: `rotateY(180deg) translateZ(${(20 - 1 * i) / 2}px)`,
+              transform: `translateZ(${-10 + i * 1}px)`,
             }}
           />
-        ))} */}
-
+        ))}
         <div
           className="absolute w-full blur-xl"
           style={{
