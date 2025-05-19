@@ -2,7 +2,7 @@
 import Link from "next/link";
 import { useEffect } from "react";
 // import GithubCardSkew from "@/components/animata/card/github-card-skew";
-import LogoCircle from "@/components/LogoCircle";
+// import LogoCircle from "@/components/LogoCircle";
 import '../styles/fonts.css';
 import CardCarousel from "@/components/CardCarousel";
 export default function Home() {
