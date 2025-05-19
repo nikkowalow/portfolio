@@ -1,0 +1,5 @@
+*.tsx linguist-language=TypeScript
+*.ts linguist-language=TypeScript
+*.html linguist-documentation
+public/* linguist-vendored
+.next/* linguist-vendored
