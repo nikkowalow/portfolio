@@ -8,6 +8,7 @@ type ImageProps = {
   alt: string;
   width: number;
   height: number;
+  rounded?: boolean;
 };
 
 export default function Card({
@@ -32,37 +33,37 @@ export default function Card({
   const ref = useRef<HTMLDivElement>(null);
 
   const baseTransform = isExpanded
-    ? "rotateY(0deg) scale(1.15) translateX(0) translateY(-50%)"
-    : "rotateY(30deg) translateY(-50%)";
+    ? `translateX(0) translateY(-50%) rotateY(0deg) scale(1.15)`
+    : `translateX(${index * 4}vw) translateY(-50%) rotateY(30deg)`;
 
   const cardThickness = 20; // depth of the card in px
 
   useEffect(() => {
     if (!isExpanded && ref.current) {
-      ref.current.style.transform = "rotateY(30deg) translateY(-50%)";
+      ref.current.style.transform = `translateX(${index * 4}vw) translateY(-50%) rotateY(30deg)`;
       ref.current.style.zIndex = "0";
     }
-  }, [isExpanded]);
+  }, [isExpanded, index]);
 
   return (
     <div
       ref={ref}
       onClick={() => (isExpanded ? onCollapse() : onExpand())}
-      className=" top-1/2 group absolute w-[600px] h-[600px] shrink-0 transform-gpu ease-in-out transition-transform duration-300"
+      className="top-1/2 group absolute shrink-0 transform-gpu ease-in-out transition-transform duration-300"
       style={{
-        left: isExpanded ? "10vw" : `calc(${index * 4}vw)`, // consistent expand position
         width: "clamp(180px, 20vw, 600px)",
         height: "clamp(300px, 50vh, 600px)",
-        transform: initialLoad
-          ? baseTransform
-          : "translateY(-200%) rotateX(30deg) scale(0.8)",
-        opacity: initialLoad ? 1 : 0,
-        zIndex: isExpanded ? "50" : undefined,
+        // transform: initialLoad
+        //   ? baseTransform
+        //   : `translateY(-200%) rotateX(30deg) scale(0.8)`,
+        opacity: initialLoad ? 1 : 1,
+        zIndex: isExpanded ? 50 : undefined,
         cursor: "pointer",
         transformStyle: "preserve-3d",
-        backfaceVisibility: "visible",
-        willChange: "transform, left",
-        transition: "left 0.5s ease, transform 0.5s ease, opacity 0.5s ease",
+        backfaceVisibility: "hidden",
+        // willChange: "transform, opacity",
+        // willChange: "opacity",
+        transform: `${baseTransform} translateZ(0)`,
       }}
       onMouseEnter={(e) => {
         if (!isExpanded) {
@@ -74,7 +75,7 @@ export default function Card({
       onMouseLeave={(e) => {
         if (!isExpanded) {
           const card = e.currentTarget as HTMLDivElement;
-          card.style.transform = "rotateY(30deg) translateY(-50%)";
+          card.style.transform = `translateX(${index * 4}vw) translateY(-50%) rotateY(30deg)`;
           card.style.zIndex = "0";
         }
         document.body.style.cursor = "url('/cursor.png'), auto";
@@ -82,36 +83,30 @@ export default function Card({
     >
       <div
         className="relative w-full h-full"
-        style={{
-          transformStyle: "preserve-3d",
-        }}
+        style={{ transformStyle: "preserve-3d" }}
       >
-        {/* FRONT */}
+        {/* Front */}
         <div
-          className="drop-shadow-[0_8px_10px_rgba(0,0,0,0.2)] shadow-xl absolute w-full h-full bg-gradient-to-br from-white/10 to-white/10 border border-black/20 rounded-2xl backdrop-blur-md p-4"
-          style={{
-            transform: `translateZ(${cardThickness / 2}px)`,
-          }}
+          className="drop-shadow-[0_8px_10px_rgba(0,0,0,0.2)] shadow-xl absolute w-full h-full bg-gradient-to-br from-white/10 to-white/10 border border-black/20 rounded-2xl p-4"
+          style={{ transform: `translateZ(${cardThickness / 2}px)` }}
         >
           <Image
             src={image.src}
-            alt={"temp alt"}
+            alt={image.alt}
             width={image.width}
             height={image.height}
-            className=" max-w-[250px]  object-contain transition-transform hover:scale-110"
+            className={`max-w-[250px] object-contain transition-transform hover:scale-110 ${image.rounded ? "rounded-xl" : ""} `}
             unoptimized
             priority
           />
-
           <h3 className="text-lg font-bold mb-2 text-black">{title}</h3>
           <p className="text-sm text-gray-700">{description}</p>
         </div>
 
+        {/* Back layering */}
         <div
-          className="absolute w-full h-full border border-black/20 rounded-2xl backdrop-blur-xs"
-          style={{
-            transform: `rotateY(180deg) translateZ(10px)`,
-          }}
+          className="absolute w-full h-full border border-black/20 rounded-2xl backdrop-blur-sm"
+          style={{ transform: `rotateY(180deg) translateZ(10px)` }}
         />
         {Array.from({ length: 20 }).map((_, i) => (
           <div
@@ -126,8 +121,8 @@ export default function Card({
           className="absolute w-full blur-xl"
           style={{
             height: `${cardThickness}px`,
-            bottom: `${100}px`,
-            transform: `rotateX(-90deg) translateZ(${200}px)`,
+            bottom: `100px`,
+            transform: `rotateX(-90deg) translateZ(200px)`,
             background: "rgba(0,0,0,0.3)",
           }}
         />

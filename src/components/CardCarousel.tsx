@@ -4,42 +4,43 @@ import { useState, useEffect } from "react";
 import Card from "./Card"; // update path if needed
 
 const cubeImage = {
-  src: "icons/cube.png",
+  src: "/icons/cube.jpg",
   alt: "Cube Exchange",
-  width: 200,
+  width: 70,
   height: 200,
+  rounded: true,
 };
 
 const nationImage = {
-  src: "icons/nation-logo.svg",
+  src: "/icons/nation-logo.svg",
   alt: "Nation",
   width: 140,
   height: 200,
 };
 
 const solanaImage = {
-  src: "icons/solana.png",
+  src: "/icons/solana.png",
   alt: "Solana",
   width: 280,
   height: 200,
 };
 
 const congressionalAppChallengeImage = {
-  src: "icons/cac.png",
+  src: "/icons/cac.png",
   alt: "Congressional App Challenge",
   width: 280,
   height: 200,
 };
 
 const ohioStateImage = {
-  src: "icons/osu.png",
+  src: "/icons/osu.png",
   alt: "Ohio State University",
   width: 100,
   height: 200,
 };
 
 const haloImage = {
-  src: "icons/halo.png",
+  src: "/icons/halo.png",
   alt: "Halo",
   width: 120,
   height: 200,
