@@ -18,7 +18,7 @@ import {
   useRopeJoint,
   useSphericalJoint,
 } from "@react-three/rapier";
-// import { Stats } from "@react-three/drei";
+import { Stats } from "@react-three/drei";
 
 import { MeshLineGeometry, MeshLineMaterial } from "meshline";
 
@@ -29,20 +29,20 @@ extend({ MeshLineGeometry, MeshLineMaterial });
 
 export default function App() {
   return (
-    <div className="w-full h-full relative z-10">
+    <div className="w-full h-full scale-[0.4] sm:scale-[0.9] md:scale-100 origin-top-left">
       <Canvas
         frameloop="always"
-        dpr={[1, 1]}
-        camera={{ position: [0, 0, 12], fov: 25 }}
+        dpr={[1, 1.5]}
+        camera={{ position: [0, 0, 13], fov: 25 }}
         gl={{ alpha: true }}
         style={{ width: "100%", height: "100%", background: "transparent" }}
       >
-        {/* <Stats /> */}
+        <Stats />
         <ambientLight intensity={Math.PI} />
         <Physics interpolate gravity={[0, -40, 0]} timeStep={1 / 60}>
           <Band />
         </Physics>
-        <Environment resolution={512} background={false}>
+        <Environment background={false}>
           {/* <color attach="background" args={["white"]} /> */}
           <Lightformer
             intensity={10}
@@ -59,15 +59,15 @@ export default function App() {
             scale={[100, 0.3, 1]}
           />
           <Lightformer
-            intensity={10}
-            color="pink"
+            intensity={8}
+            color="blue"
             position={[1, 1, 1]}
             rotation={[0, 0, Math.PI / 3]}
             scale={[100, 0.3, 1]}
           />
           <Lightformer
             intensity={10}
-            color="blue"
+            color="pink"
             position={[-10, 0, 14]}
             rotation={[0, Math.PI / 2, Math.PI / 3]}
             scale={[100, 10, 1]}
@@ -89,19 +89,19 @@ function Band({ maxSpeed = 50, minSpeed = 10 }) {
   const segmentProps = {
     type: "dynamic" as const, // ⬅️ assert the literal type
     canSleep: true,
-    angularDamping: 2,
+    angularDamping: 3,
     linearDamping: 2,
   };
 
   //   const { nodes, materials } = useGLTF(
   //     "https://assets.vercel.com/image/upload/contentful/image/e5382hct74si/5huRVDzcoDwnbgrKUo1Lzs/53b6dd7d6b4ffcdbd338fa60265949e1/tag.glb"
   //   );
-  const { nodes, materials } = useGLTF("/tag.glb");
+  const { nodes, materials } = useGLTF("/icons/tag.glb");
   //   const texture = useTexture(
   //     "https://assets.vercel.com/image/upload/contentful/image/e5382hct74si/SOT1hmCesOHxEYxL7vkoZ/c57b29c85912047c414311723320c16b/band.jpg"
   //   );
 
-  const texture = useTexture("/icons/Nikko Kowalow.png");
+  const texture = useTexture("/icons/NikkoKowalowLanyard.png");
   const { width, height } = useThree((state) => state.size);
   const [curve] = useState(
     () =>
@@ -168,7 +168,7 @@ function Band({ maxSpeed = 50, minSpeed = 10 }) {
     }
   });
 
-  curve.curveType = "chordal";
+  curve.curveType = "centripetal";
   texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
 
   return (
@@ -213,11 +213,12 @@ function Band({ maxSpeed = 50, minSpeed = 10 }) {
               <meshPhysicalMaterial
                 map={(materials.base as THREE.MeshPhysicalMaterial).map}
                 // map={badgeTexture}
-                map-anisotropy={16}
+                map-anisotropy={0}
                 clearcoat={1}
                 clearcoatRoughness={0.15}
                 roughness={0.3}
-                metalness={0.5}
+                metalness={0.4}
+                reflectivity={0.5}
               />
             </mesh>
 
