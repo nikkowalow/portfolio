@@ -18,7 +18,7 @@ import {
   useRopeJoint,
   useSphericalJoint,
 } from "@react-three/rapier";
-import { Stats } from "@react-three/drei";
+// import { Stats } from "@react-three/drei";
 
 import { MeshLineGeometry, MeshLineMaterial } from "meshline";
 
@@ -29,7 +29,7 @@ extend({ MeshLineGeometry, MeshLineMaterial });
 
 export default function App() {
   return (
-    <div className="w-full h-full scale-[0.4] sm:scale-[0.9] md:scale-100 origin-top-left">
+    <div className="w-full h-full scale-[0.4] sm:scale-50 md:scale-80 lg:scale-100 origin-top-left">
       <Canvas
         frameloop="always"
         dpr={[1, 1.5]}
@@ -37,7 +37,7 @@ export default function App() {
         gl={{ alpha: true }}
         style={{ width: "100%", height: "100%", background: "transparent" }}
       >
-        <Stats />
+        {/* <Stats /> */}
         <ambientLight intensity={Math.PI} />
         <Physics interpolate gravity={[0, -40, 0]} timeStep={1 / 60}>
           <Band />
@@ -121,10 +121,19 @@ function Band({ maxSpeed = 50, minSpeed = 10 }) {
   useSphericalJoint(j3, card, [[0, 0, 0], [0, 1.45, 0]]) // prettier-ignore
 
   useEffect(() => {
+    const defaultCursor = "url('/cursor.png') 16 16, auto";
+    const hoverCursor = "url('/grab-cursor.png') 16 16, auto";
+    const grabCursor = "url('/grabbing-cursor.png') 16 16, grab";
+
     if (hovered) {
-      document.body.style.cursor = dragged ? "grabbing" : "grab";
-      return () => void (document.body.style.cursor = "auto");
+      document.body.style.cursor = dragged ? grabCursor : hoverCursor;
+    } else {
+      document.body.style.cursor = defaultCursor;
     }
+
+    return () => {
+      document.body.style.cursor = defaultCursor;
+    };
   }, [hovered, dragged]);
 
   useFrame((state, delta) => {

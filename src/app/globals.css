@@ -74,3 +74,9 @@ body {
         animation: float2 6s ease-in-out infinite;
     }
 }
+
+.custom-hover:hover {
+    cursor: url("/grabbing-cursor.png"), auto; }
+
+/* .grab-badge-cursor:hover {
+    cursor: url("/grab-cursor-white.png"), auto; } */
