@@ -85,12 +85,12 @@ export default function Card({
       }}
     >
       <div
-        className="relative w-full h-full"
+        className=" relative w-full h-full"
         style={{ transformStyle: "preserve-3d" }}
       >
         {/* Front */}
         <div
-          className="drop-shadow-[0_8px_10px_rgba(0,0,0,0.2)] shadow-xl absolute w-full h-full bg-gradient-to-br from-white/10 to-white/10 border border-black/20 rounded-2xl p-4"
+          className=" shadow-2xl absolute w-full h-full bg-gradient-to-br from-white/10 to-white/10 border border-black/20 rounded-2xl p-4"
           style={{ transform: `translateZ(${cardThickness / 2}px)` }}
         >
           <Image
@@ -108,13 +108,13 @@ export default function Card({
 
         {/* Back layering */}
         <div
-          className="absolute w-full h-full border border-black/20 rounded-2xl backdrop-blur-sm"
+          className=" absolute w-full h-full border border-black/20 rounded-2xl backdrop-blur-sm"
           style={{ transform: `rotateY(180deg) translateZ(10px)` }}
         />
         {Array.from({ length: 20 }).map((_, i) => (
           <div
             key={`back-layer-${i}`}
-            className="absolute w-full h-full border border-white/70 rounded-2xl"
+            className=" absolute w-full h-full border border-white/70 rounded-2xl"
             style={{
               transform: `translateZ(${-10 + i * 1}px)`,
             }}

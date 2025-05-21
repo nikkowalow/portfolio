@@ -5,6 +5,7 @@ import { useEffect } from "react";
 // import GithubCardSkew from "@/components/animata/card/github-card-skew";
 // import LogoCircle from "@/components/LogoCircle";
 import "../styles/fonts.css";
+import "@/app/globals.css";
 import CardCarousel from "@/components/CardCarousel";
 import Badge from "@/components/Badge";
 export default function Home() {
@@ -53,12 +54,14 @@ export default function Home() {
   return (
     <main className="min-h-screen w-full bg-white overflow-hidden relative">
       {/* Gradient Background Blobs */}
+
       <div className="absolute top-20 right-0 w-[1500px] h-[500px] bg-yellow-200 opacity-60 rounded-full blur-3xl z-0" />
       <div className="absolute bottom-0 right-40 w-[1600px] h-[600px] bg-green-200 opacity-60 rounded-full blur-3xl z-0" />
       <div className="absolute top-0 left-0 w-[1500px] h-[600px] bg-pink-300 opacity-60 rounded-full blur-3xl z-0" />
       <div className="absolute bottom-10 left-40 w-[1500px] h-[500px] bg-blue-200 opacity-60 rounded-full blur-3xl z-0" />
+
       <div className="absolute top-0 left-0 w-full h-screen pointer-events-none z-10">
-        <div className="w-[100vh] h-full pointer-events-auto z-0">
+        <div className="w-1/2 h-full pointer-events-none">
           <Badge />
         </div>
       </div>
