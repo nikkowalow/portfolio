@@ -44,26 +44,29 @@ export default function Card({
       ref.current.style.zIndex = "0";
     }
   }, [isExpanded, index]);
-
+  const fallInTransform = `translateY(-200%) rotateX(10deg) scale(0.8)`;
+  const cardStyle = initialLoad ? baseTransform : fallInTransform;
+  const fallInTransition = !initialLoad
+    ? {
+        transition: `transform 1s ease-out, opacity 0s ease-out`,
+        transitionDelay: `${index * 0.2}s`,
+      }
+    : {};
   return (
     <div
       ref={ref}
       onClick={() => (isExpanded ? onCollapse() : onExpand())}
-      className="top-1/2 group absolute shrink-0 transform-gpu ease-in-out transition-transform duration-300"
+      className=" top-1/2 group absolute shrink-0 transform-gpu ease-in-out transition-transform duration-300"
       style={{
         width: "clamp(180px, 20vw, 600px)",
         height: "clamp(300px, 50vh, 600px)",
-        // transform: initialLoad
-        //   ? baseTransform
-        //   : `translateY(-200%) rotateX(30deg) scale(0.8)`,
-        opacity: initialLoad ? 1 : 1,
+        transform: cardStyle,
+        opacity: 1,
         zIndex: isExpanded ? 50 : undefined,
         cursor: "pointer",
         transformStyle: "preserve-3d",
         backfaceVisibility: "hidden",
-        // willChange: "transform, opacity",
-        // willChange: "opacity",
-        transform: `${baseTransform} translateZ(0)`,
+        ...fallInTransition,
       }}
       onMouseEnter={(e) => {
         if (!isExpanded) {
