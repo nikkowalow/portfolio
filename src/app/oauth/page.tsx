@@ -5,7 +5,6 @@ import { useEffect } from "react";
 
 export default function OAuthRedirect() {
   useEffect(() => {
-    const query = window.location.search;
     window.location.href = `loopr://auth/callback${window.location.search}`;
   }, []);
 
