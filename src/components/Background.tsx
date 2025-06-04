@@ -69,24 +69,7 @@ export default function Background({
     const gl = renderer.gl;
     gl.clearColor(1, 1, 1, 1);
 
-    let program: Program;
-
-    function resize() {
-      const scale = 1;
-      renderer.setSize(ctn.offsetWidth * scale, ctn.offsetHeight * scale);
-      if (program) {
-        program.uniforms.uResolution.value = new Color(
-          gl.canvas.width,
-          gl.canvas.height,
-          gl.canvas.width / gl.canvas.height
-        );
-      }
-    }
-    window.addEventListener("resize", resize, false);
-    resize();
-
-    const geometry = new Triangle(gl);
-    program = new Program(gl, {
+    const program = new Program(gl, {
       vertex: vertexShader,
       fragment: fragmentShader,
       uniforms: {
@@ -106,7 +89,21 @@ export default function Background({
         uSpeed: { value: speed },
       },
     });
+    function resize() {
+      const scale = 1;
+      renderer.setSize(ctn.offsetWidth * scale, ctn.offsetHeight * scale);
+      if (program) {
+        program.uniforms.uResolution.value = new Color(
+          gl.canvas.width,
+          gl.canvas.height,
+          gl.canvas.width / gl.canvas.height
+        );
+      }
+    }
+    window.addEventListener("resize", resize, false);
+    resize();
 
+    const geometry = new Triangle(gl);
     const mesh = new Mesh(gl, { geometry, program });
     let animateId: number;
 
