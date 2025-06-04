@@ -8,6 +8,8 @@ import "../styles/fonts.css";
 import "@/app/globals.css";
 import CardCarousel from "@/components/CardCarousel";
 import Badge from "@/components/Badge";
+import Background from "@/components/Background";
+
 export default function Home() {
   type TiltCardElement = HTMLElement & {
     _boundMove?: (e: MouseEvent) => void;
@@ -25,7 +27,9 @@ export default function Home() {
       const midY = rect.height / 2;
       const deltaX = (x - midX) / midX;
       const deltaY = (y - midY) / midY;
-      card.style.transform = `rotateY(${deltaX * 10}deg) rotateX(${-deltaY * 10}deg)`;
+      card.style.transform = `rotateY(${deltaX * 10}deg) rotateX(${
+        -deltaY * 10
+      }deg)`;
     };
 
     const reset = (card: HTMLElement) => {
@@ -53,13 +57,19 @@ export default function Home() {
 
   return (
     <main className="min-h-screen w-full bg-white overflow-hidden relative">
+      <div className="absolute top-0 left-0 w-full h-full z-0 opacity-[0.6]">
+        <Background
+          color={[1, 1, 1]}
+          mouseReact={true}
+          amplitude={2.5}
+          speed={0.3}
+        />
+      </div>
       {/* Gradient Background Blobs */}
-
       <div className="absolute top-20 right-0 w-[1500px] h-[500px] bg-yellow-200 opacity-60 rounded-full blur-3xl z-0" />
       <div className="absolute bottom-0 right-40 w-[1600px] h-[600px] bg-green-200 opacity-60 rounded-full blur-3xl z-0" />
       <div className="absolute top-0 left-0 w-[1500px] h-[600px] bg-pink-300 opacity-60 rounded-full blur-3xl z-0" />
       <div className="absolute bottom-10 left-40 w-[1500px] h-[500px] bg-blue-200 opacity-60 rounded-full blur-3xl z-0" />
-
       <div className="absolute top-0 left-0 w-full h-screen pointer-events-none z-10">
         <div className="w-1/2 h-full pointer-events-none">
           <Badge />
@@ -68,7 +78,6 @@ export default function Home() {
       <div className="relative w-full h-screen flex items-center justify-center ">
         <CardCarousel />
       </div>
-
       {/* Floating Bottom Nav with Icons */}
       <div className="fixed bottom-9 left-1/2 transform -translate-x-1/2 z-50">
         <div className="flex items-center justify-around gap-8 px-6 py-3 bg-white/40 backdrop-blur-2xl rounded-full shadow-lg scale-115">

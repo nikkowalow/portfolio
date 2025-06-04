@@ -40,7 +40,9 @@ export default function Card({
 
   useEffect(() => {
     if (!isExpanded && ref.current) {
-      ref.current.style.transform = `translateX(${index * 4}vw) translateY(-50%) rotateY(30deg)`;
+      ref.current.style.transform = `translateX(${
+        index * 4
+      }vw) translateY(-50%) rotateY(30deg)`;
       ref.current.style.zIndex = "0";
     }
   }, [isExpanded, index]);
@@ -78,7 +80,9 @@ export default function Card({
       onMouseLeave={(e) => {
         if (!isExpanded) {
           const card = e.currentTarget as HTMLDivElement;
-          card.style.transform = `translateX(${index * 4}vw) translateY(-50%) rotateY(30deg)`;
+          card.style.transform = `translateX(${
+            index * 4
+          }vw) translateY(-50%) rotateY(30deg)`;
           card.style.zIndex = "0";
         }
         document.body.style.cursor = "url('/cursor.png'), auto";
@@ -98,13 +102,22 @@ export default function Card({
             alt={image.alt}
             width={image.width}
             height={image.height}
-            className={`max-w-[250px] object-contain transition-transform hover:scale-110 ${image.rounded ? "rounded-xl" : ""} `}
+            className={`max-w-[250px] object-contain transition-transform hover:scale-110 ${
+              image.rounded ? "rounded-xl" : ""
+            } `}
             unoptimized
             priority
           />
           <h3 className="text-lg font-bold mb-2 text-black">{title}</h3>
           <p className="text-sm text-gray-700">{description}</p>
         </div>
+        {/* <div className="absolute bottom-6 left-4 flex items-end gap-[2px] w-24 h-12">
+          <div className="w-[3px] bg-green-500 animate-[bounce_1.2s_ease-in-out_infinite] h-[40%]" />
+          <div className="w-[3px] bg-green-400 animate-[pulse_1.5s_ease-in-out_infinite] h-[70%]" />
+          <div className="w-[3px] bg-green-600 animate-[bounce_1s_ease-in-out_infinite] h-[50%]" />
+          <div className="w-[3px] bg-green-300 animate-[pulse_1.3s_ease-in-out_infinite] h-[65%]" />
+          <div className="w-[3px] bg-green-500 animate-[bounce_1.4s_ease-in-out_infinite] h-[30%]" />
+        </div> */}
 
         {/* Back layering */}
         <div
