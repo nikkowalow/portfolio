@@ -9,6 +9,8 @@ import "@/app/globals.css";
 import CardCarousel from "@/components/CardCarousel";
 import Badge from "@/components/Badge";
 import Background from "@/components/Background";
+import Aurora from "@/components/Aurora";
+import Prism from "@/components/Prism";
 
 export default function Home() {
   type TiltCardElement = HTMLElement & {
@@ -58,18 +60,37 @@ export default function Home() {
   return (
     <main className="min-h-screen w-full bg-white overflow-hidden relative">
       <div className="absolute top-0 left-0 w-full h-full z-0 opacity-[0.6]">
-        <Background
+        {/* <Background
           color={[1, 1, 1]}
           mouseReact={true}
           amplitude={2.5}
           speed={0.3}
+        /> */}
+        <Aurora
+          colorStops={["#5500ff", "#f600ff", "#00ecff"]}
+          blend={0.5}
+          amplitude={1.0}
+          speed={1}
         />
+        {/* <div style={{ width: "100%", height: "600px", position: "relative" }}> */}
+        {/* <Prism
+          animationType="rotate"
+          timeScale={1}
+          height={8.5}
+          baseWidth={5.5}
+          scale={1.6}
+          hueShift={0}
+          colorFrequency={1}
+          noise={0.0}
+          glow={1}
+        /> */}
+        {/* </div> */}
       </div>
       {/* Gradient Background Blobs */}
-      <div className="absolute top-20 right-0 w-[1500px] h-[500px] bg-yellow-200 opacity-60 rounded-full blur-3xl z-0" />
+      {/* <div className="absolute top-20 right-0 w-[1500px] h-[500px] bg-yellow-200 opacity-60 rounded-full blur-3xl z-0" />
       <div className="absolute bottom-0 right-40 w-[1600px] h-[600px] bg-green-200 opacity-60 rounded-full blur-3xl z-0" />
       <div className="absolute top-0 left-0 w-[1500px] h-[600px] bg-pink-300 opacity-60 rounded-full blur-3xl z-0" />
-      <div className="absolute bottom-10 left-40 w-[1500px] h-[500px] bg-blue-200 opacity-60 rounded-full blur-3xl z-0" />
+      <div className="absolute bottom-10 left-40 w-[1500px] h-[500px] bg-blue-200 opacity-60 rounded-full blur-3xl z-0" /> */}
       <div className="absolute top-0 left-0 w-full h-screen pointer-events-none z-10">
         <div className="w-1/2 h-full pointer-events-none">
           <Badge />
@@ -98,7 +119,7 @@ export default function Home() {
             <img src="/icons/linkedin.png" alt="LinkedIn" className="h-6 w-6" />
           </a>
           <a
-            href="https://x.com/nikkowalow"
+            href="https://x.com/yieldmaxxer"
             target="_blank"
             rel="noopener noreferrer"
             className="hover:scale-110 transition-transform"

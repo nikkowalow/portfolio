@@ -16,6 +16,9 @@ export default function Card({
   title,
   description,
   image,
+  date,
+  location,
+  company,
   isExpanded,
   onExpand,
   onCollapse,
@@ -23,8 +26,11 @@ export default function Card({
 }: {
   index: number;
   title: string;
-  description: string;
+  description: string[];
   image: ImageProps;
+  date: string;
+  location: string;
+  company: string;
   isExpanded: boolean;
   onExpand: () => void;
   onCollapse: () => void;
@@ -94,7 +100,7 @@ export default function Card({
       >
         {/* Front */}
         <div
-          className=" shadow-2xl absolute w-full h-full bg-gradient-to-br from-white/10 to-white/10 border border-black/20 rounded-2xl p-4"
+          className=" shadow-2xl absolute w-full h-full bg-gradient-to-br from-white/10 to-white/10 border border-black/20 rounded-2xl p-4 flex flex-col"
           style={{ transform: `translateZ(${cardThickness / 2}px)` }}
         >
           <Image
@@ -108,8 +114,16 @@ export default function Card({
             unoptimized
             priority
           />
-          <h3 className="text-lg font-bold mb-2 text-black">{title}</h3>
-          <p className="text-sm text-gray-700">{description}</p>
+          <h3 className="text-lg font-bold text-black mb-2">{title}</h3>
+          <p className="text-xs text-black mb-3">{location}</p>
+          <div className="space-y-1 mb-auto">
+            {description.map((item, idx) => (
+              <p key={idx} className="text-xs text-black">
+                {item}
+              </p>
+            ))}
+          </div>
+          <p className="text-xs text-black mt-auto">{date}</p>
         </div>
         {/* <div className="absolute bottom-6 left-4 flex items-end gap-[2px] w-24 h-12">
           <div className="w-[3px] bg-green-500 animate-[bounce_1.2s_ease-in-out_infinite] h-[40%]" />
@@ -121,7 +135,7 @@ export default function Card({
 
         {/* Back layering */}
         <div
-          className=" absolute w-full h-full border border-black/20 rounded-2xl backdrop-blur-sm"
+          className=" absolute w-full h-full border border-black/20 rounded-2xl backdrop-blur-md"
           style={{ transform: `rotateY(180deg) translateZ(10px)` }}
         />
         {Array.from({ length: 20 }).map((_, i) => (
