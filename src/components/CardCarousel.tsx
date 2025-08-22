@@ -53,7 +53,6 @@ const cardData = [
     title: "Congressional App Challenge",
     date: "June 2020",
     location: "Hackathon",
-    company: "U.S. House of Representatives",
     description: [
       "• Placed 1st in the state of Illinois, awawrded by Rep. Brad Schneider.",
       "• Created a skin cancer pre-diagnosis suite using Python, React, and SQL, training a machine learning model to classify benign vs. malignant lesions with 83% accuracy.",
@@ -64,7 +63,6 @@ const cardData = [
     title: "Solana Season Hackathon",
     date: "June 2021",
     location: "Hackathon",
-    company: "Solana Foundation",
     description: [
       "• Received 3rd place in the NFT track. Awarded $5,000 by the Solana Foundation.",
       "• Built a decentralized ticketing and event hosting platform on Solana using Rust, React, and smart contracts.",
@@ -76,7 +74,6 @@ const cardData = [
     title: "NATION",
     date: "Jun 2023 - Aug 2023",
     location: "Chicago, IL",
-    company: "NATION",
     description: [
       "• Developed the mobile front-end using React Native and Python for the backend, and built portions of the web app using React and TypeScript.",
       "• Implemented Least Significant Bit (LSB) steganography for secure, hidden data transmission within media files, reducing the risk of media leaks.",
@@ -89,7 +86,6 @@ const cardData = [
     title: "Cube exchange",
     date: "May 2024 - Aug 2024",
     location: "Chicago, IL",
-    company: "Cube Exchange",
     description: [
       "• Enhanced the backend of a high-performance trading platform (Rust, PostgreSQL) by implementing an atomic all-or-none order matching and execution feature, reducing failed multi-asset executions by ~30% and preventing partial fills.",
       "• Implemented an automated portfolio rebalancing system that regularly adjusts user portfolios to align with target allocations, improving performance consistency and risk control.",
@@ -124,7 +120,6 @@ export default function CardCarousel() {
           image={card.image}
           date={card.date}
           location={card.location}
-          company={card.company}
           description={card.description}
           isExpanded={expandedCard === i}
           onExpand={() => setExpandedCard(i)}
