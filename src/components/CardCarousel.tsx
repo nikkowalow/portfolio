@@ -39,13 +39,6 @@ const ohioStateImage = {
   height: 200,
 };
 
-const haloImage = {
-  src: "/icons/halo.png",
-  alt: "Halo",
-  width: 120,
-  height: 200,
-};
-
 const cardData = [
   {
     title: "Ohio State University",
@@ -106,19 +99,6 @@ const cardData = [
     ],
     image: cubeImage,
   },
-
-  //   {
-  //     title: "Halo",
-  //     date: "[Start Date] - Present",
-  //     location: "[City, State/Country]",
-  //     company: "Halo",
-  //     description: [
-  //       "• [Responsibility/Achievement 1]",
-  //       "• [Responsibility/Achievement 2]",
-  //       "• [Responsibility/Achievement 3]",
-  //     ],
-  //     image: haloImage,
-  //   },
 ];
 
 export default function CardCarousel() {

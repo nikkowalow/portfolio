@@ -8,9 +8,7 @@ import "../styles/fonts.css";
 import "@/app/globals.css";
 import CardCarousel from "@/components/CardCarousel";
 import Badge from "@/components/Badge";
-import Background from "@/components/Background";
 import Aurora from "@/components/Aurora";
-import Prism from "@/components/Prism";
 
 export default function Home() {
   type TiltCardElement = HTMLElement & {
