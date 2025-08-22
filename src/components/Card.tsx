@@ -18,7 +18,6 @@ export default function Card({
   image,
   date,
   location,
-  company,
   isExpanded,
   onExpand,
   onCollapse,
@@ -30,7 +29,6 @@ export default function Card({
   image: ImageProps;
   date: string;
   location: string;
-  company: string;
   isExpanded: boolean;
   onExpand: () => void;
   onCollapse: () => void;
