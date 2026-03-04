@@ -27,23 +27,6 @@ export default function TechStackCard({
 
   return (
     <div className="flex h-full w-full">
-      {/* TITLE BAR */}
-      <div
-        className={`bg-gray-800 px-4 flex items-center justify-center ${
-          isLeft ? "order-1" : "order-2"
-        }`}
-      >
-        <p
-          className={`text-black text-2xl uppercase whitespace-nowrap`}
-          style={{
-            writingMode: "vertical-rl",
-            transform: isLeft ? "rotate(180deg)" : "none",
-          }}
-        >
-          {title}
-        </p>
-      </div>
-
       {/* CONTENT */}
       <div
         className={`flex-1 min-h-0 flex items-center justify-center overflow-hidden ${

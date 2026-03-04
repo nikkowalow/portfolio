@@ -583,7 +583,7 @@ const MagicBento: React.FC<BentoProps> = ({
       color: "#060010",
       title: "Languages",
       render: () => (
-        <TechStackCard title={"Languages"} titleSide="left" direction="up" />
+        <TechStackCard title={"Languages"} titleSide="left" direction="left" />
       ),
     },
     {
@@ -593,7 +593,7 @@ const MagicBento: React.FC<BentoProps> = ({
         <TechStackCard
           title={"Tools & Frameworks"}
           titleSide="right"
-          direction="down"
+          direction="right"
         />
       ),
       //   render: () => <GridCard title="Languages" items={data[4]} />,
@@ -633,47 +633,49 @@ const MagicBento: React.FC<BentoProps> = ({
           
         @media (min-width: 1024px) {
 
-        .card-responsive {
-            grid-template-columns: 0.3fr 0.6fr 1.4fr 1fr 0.3fr;
-            grid-template-rows: repeat(2, 1fr);
+            .card-responsive {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            grid-template-rows: 1fr 0.2fr 0.2fr 1fr;
             height: 100%;
-        }
+            }
 
-        /* 1 */
-        .card-responsive .card:nth-child(1) {
-            grid-column: 2;
-            grid-row: 1;
-        }
-
-        /* 2 */
-        .card-responsive .card:nth-child(2) {
-            grid-column: 4;
-            grid-row: 2;
-        }
-
-        /* 3 */
-        .card-responsive .card:nth-child(3) {
-            grid-column: 3 / span 2;
-            grid-row: 1;
-        }
-
-        /* 4 */
-        .card-responsive .card:nth-child(4) {
-            grid-column: 2 / span 2;
-            grid-row: 2;
-        }
-
-        /* 5 (left sidebar) */
-        .card-responsive .card:nth-child(5) {
+            /* 1 */
+            .card-responsive .card:nth-child(1) {
             grid-column: 1;
-            grid-row: span 2;
-        }
+            grid-row: 1 / span 1;
+            }
 
-        /* 6 (right sidebar) */
-        .card-responsive .card:nth-child(6) {
-            grid-column: 5;
-            grid-row: span 2;
-        }
+            /* 2 */
+            .card-responsive .card:nth-child(2) {
+            grid-column: 3;
+            grid-row: 4;
+            }
+
+            /* 3 */
+            .card-responsive .card:nth-child(3) {
+            grid-column: 2 / span 2;
+            grid-row: 1 / span 2;
+            }
+
+            /* 4 */
+            .card-responsive .card:nth-child(4) {
+            grid-column: 1 / span 2;
+            grid-row: 3 / span 2;
+            }
+
+            /* 5 */
+            .card-responsive .card:nth-child(5) {
+            grid-column: 3 ;
+            grid-row: 3;
+            }
+
+            /* 6 */
+            .card-responsive .card:nth-child(6) {
+            grid-column: 1 / span 1;
+            grid-row: 2;
+            }
+
         }
           
           .card--border-glow::after {
