@@ -602,28 +602,50 @@ const MagicBento: React.FC<BentoProps> = ({
             }
           }
           
-          @media (min-width: 1024px) {
-            .card-responsive {
-              grid-template-columns: repeat(4, 1fr);
-              grid-template-rows: repeat(3, 1fr);
-              height: 100%;
-            }
+        @media (min-width: 1024px) {
 
-            .card-responsive .card:nth-child(3) {
-              grid-column: span 2;
-              grid-row: span 2;
-            }
+        .card-responsive {
+            grid-template-columns: 0.5fr 0.8fr 1.2fr 1fr 0.5fr;
+            grid-template-rows: repeat(2, 1fr);
+            height: 100%;
+        }
 
-            .card-responsive .card:nth-child(4) {
-              grid-column: 1 / span 2;
-              grid-row: 2 / span 2;
-            }
+        /* 1 */
+        .card-responsive .card:nth-child(1) {
+            grid-column: 2;
+            grid-row: 1;
+        }
 
-            .card-responsive .card:nth-child(6) {
-              grid-column: 4;
-              grid-row: 3;
-            }
-          }
+        /* 2 */
+        .card-responsive .card:nth-child(2) {
+            grid-column: 4;
+            grid-row: 2;
+        }
+
+        /* 3 */
+        .card-responsive .card:nth-child(3) {
+            grid-column: 3 / span 2;
+            grid-row: 1;
+        }
+
+        /* 4 */
+        .card-responsive .card:nth-child(4) {
+            grid-column: 2 / span 2;
+            grid-row: 2;
+        }
+
+        /* 5 (left sidebar) */
+        .card-responsive .card:nth-child(5) {
+            grid-column: 1;
+            grid-row: span 2;
+        }
+
+        /* 6 (right sidebar) */
+        .card-responsive .card:nth-child(6) {
+            grid-column: 5;
+            grid-row: span 2;
+        }
+        }
           
           .card--border-glow::after {
             content: '';
