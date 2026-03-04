@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef } from "react";
 import Image from "next/image";
 
 interface GridItem {
@@ -86,13 +86,12 @@ const GridCard: React.FC<GridCardProps> = ({
       >
         {Array.from({ length: total }).map((_, i) => {
           const item = items[i];
-          const label = item?.title ?? item?.name ?? item?.school ?? null;
 
           return (
             <div
               key={i}
               className={`cursor-target 
-                ${item.image.invert ? "invert group-hover:invert-0" : ""}
+                ${item.image?.invert ? "invert group-hover:invert-0" : ""}
                 grayscale group-hover:grayscale-0 transition-[filter] duration-800 ease-out flex flex-col items-center justify-center gap-1 overflow-hidden ${getRadiusClass(i)}`}
               style={{
                 backgroundColor:

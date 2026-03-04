@@ -66,7 +66,7 @@ export default function CardCarousel() {
       </Section>
 
       {/* 3 · Education */}
-      <Section label="Education">
+      {/* <Section label="Education">
         <div>
           <div className="flex items-baseline justify-between mb-1">
             <h3 className="text-white font-semibold text-lg">
@@ -78,7 +78,7 @@ export default function CardCarousel() {
           <p className="text-white/70 text-sm">{education.degree}</p>
           <p className="text-white/40 text-sm">{education.spec}</p>
         </div>
-      </Section>
+      </Section> */}
 
       {/* 4 · Technical Skills */}
       <Section label="Technical Skills">

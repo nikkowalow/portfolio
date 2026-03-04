@@ -1,12 +1,15 @@
 import React from "react";
+import Image from "next/image";
 
 export default function AboutCard() {
   return (
     <div className="relative h-full w-full overflow-hidden rounded-[inherit]">
       {/* Background photo */}
-      <img
+      <Image
         src="/icons/pfp.jpg"
         alt="Nikko Kowalow"
+        width="1000"
+        height="1000"
         className="absolute inset-0 w-full h-full object-cover object-top"
       />
 

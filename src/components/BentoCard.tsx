@@ -1,5 +1,4 @@
 import { gsap } from "gsap";
-import TargetCursor from "./TargetCursor";
 
 interface BentoCardProps {
   className?: string;

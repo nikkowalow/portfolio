@@ -3,7 +3,6 @@
 import "../styles/fonts.css";
 import "@/app/globals.css";
 import Bento from "@/components/Bento";
-import BentoCard from "@/components/BentoCard";
 import TargetCursor from "@/components/TargetCursor";
 import {
   profile,
