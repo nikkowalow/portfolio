@@ -258,15 +258,15 @@ const ParticleCard: React.FC<{
       const centerY = rect.height / 2;
 
       if (enableTilt) {
-        const rotateX = ((y - centerY) / centerY) * -10;
-        const rotateY = ((x - centerX) / centerX) * 10;
+        const rotateX = ((y - centerY) / centerY) * -4;
+        const rotateY = ((x - centerX) / centerX) * 4;
 
         gsap.to(element, {
           rotateX,
           rotateY,
-          duration: 0.1,
+          duration: 0.2,
           ease: "power2.out",
-          transformPerspective: 1000,
+          transformPerspective: 100,
         });
       }
 
@@ -780,7 +780,7 @@ const MagicBento: React.FC<BentoProps> = ({
       <BentoCardGrid gridRef={gridRef}>
         <div className="card-responsive grid gap-2 h-full">
           {cardData.slice(0).map((card, index) => {
-            const baseClassName = ` card flex flex-col justify-between relative w-full h-full max-w-full p-0 rounded-[20px] border border-solid font-light overflow-hidden transition-colors duration-300 ease-in-out hover:shadow-[0_8px_25px_rgba(0,0,0,0.15)] ${
+            const baseClassName = `cursor-target card flex flex-col justify-between relative w-full h-full max-w-full p-0 rounded-[20px] border border-solid font-light overflow-hidden transition-colors duration-300 ease-in-out hover:shadow-[0_8px_25px_rgba(0,0,0,0.15)] ${
               enableBorderGlow ? "card--border-glow" : ""
             }`;
 

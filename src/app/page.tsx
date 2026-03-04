@@ -31,12 +31,12 @@ export default function Home() {
       <Bento
         textAutoHide={true}
         enableStars
-        enableSpotlight
+        enableSpotlight={true}
         enableBorderGlow={true}
-        enableTilt={false}
+        // enableTilt={false}
         enableMagnetism={false}
         clickEffect
-        spotlightRadius={400}
+        spotlightRadius={800}
         particleCount={12}
         glowColor="132, 0, 255"
         disableAnimations={false}

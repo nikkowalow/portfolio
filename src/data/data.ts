@@ -12,6 +12,8 @@ export const nationImage = {
   alt: "Nation",
   width: 140,
   height: 200,
+  fill: false,
+  invert: true,
 };
 
 export const solanaImage = {
@@ -27,6 +29,7 @@ export const osmiumImage = {
   alt: "Osmium",
   width: 280,
   height: 200,
+  invert: true,
 };
 
 export const congressionalAppChallengeImage = {
@@ -220,6 +223,7 @@ export const links: {}[] = [
       width: 20,
       height: 20,
       hoverSrc: "/icons/x-white.png",
+      invert: true,
     },
     backgroundColor: "#fff",
   },
