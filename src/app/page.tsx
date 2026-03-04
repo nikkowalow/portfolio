@@ -3,6 +3,7 @@
 import "../styles/fonts.css";
 import "@/app/globals.css";
 import Bento from "@/components/Bento";
+import TargetCursor from "@/components/TargetCursor";
 import {
   profile,
   education,
@@ -19,17 +20,23 @@ const tools = skills
 export default function Home() {
   return (
     <main className="w-screen h-screen bg-[#060010] overflow-hidden">
+      <TargetCursor
+        spinDuration={5}
+        hideDefaultCursor
+        parallaxOn
+        hoverDuration={1}
+      />
       <Bento
         textAutoHide={true}
         enableStars={false}
-        enableSpotlight
+        enableSpotlight={true}
         enableBorderGlow={true}
         enableTilt={false}
         enableMagnetism={false}
         clickEffect
         spotlightRadius={800}
         particleCount={0}
-        glowColor="132, 0, 255"
+        glowColor="255, 255, 255"
         disableAnimations={false}
         data={[profile, education, workExperience, projects, languages, tools]}
       />

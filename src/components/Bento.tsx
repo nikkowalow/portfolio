@@ -33,7 +33,6 @@ const DEFAULT_SPOTLIGHT_RADIUS = 300;
 const DEFAULT_GLOW_COLOR = "132, 0, 255";
 const MOBILE_BREAKPOINT = 768;
 
-
 const createParticleElement = (
   x: number,
   y: number,
@@ -717,7 +716,7 @@ const MagicBento: React.FC<BentoProps> = ({
       <BentoCardGrid gridRef={gridRef}>
         <div className="card-responsive grid gap-2 h-full">
           {cardData.map((card, index) => {
-            const baseClassName = `card flex flex-col justify-between relative w-full h-full max-w-full p-4 rounded-[20px] border border-solid font-light overflow-hidden transition-colors duration-300 ease-in-out hover:shadow-[0_8px_25px_rgba(0,0,0,0.15)] ${
+            const baseClassName = ` card flex flex-col justify-between relative w-full h-full max-w-full p-0 rounded-[20px] border border-solid font-light overflow-hidden transition-colors duration-300 ease-in-out hover:shadow-[0_8px_25px_rgba(0,0,0,0.15)] ${
               enableBorderGlow ? "card--border-glow" : ""
             }`;
 

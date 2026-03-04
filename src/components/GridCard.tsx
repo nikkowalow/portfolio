@@ -69,8 +69,8 @@ const GridCard: React.FC<GridCardProps> = ({
     const row = Math.floor(i / cols);
     const col = i % cols;
     let radius = "";
-    if (row === 0 && col === 0) radius += " rounded-tl-lg";
-    if (row === 0 && col === cols - 1) radius += " rounded-tr-lg";
+    // if (row === 0 && col === 0) radius += " rounded-tl-lg";
+    // if (row === 0 && col === cols - 1) radius += " rounded-tr-lg";
     if (row === rows - 1 && col === 0) radius += " rounded-bl-lg";
     if (row === rows - 1 && col === cols - 1) radius += " rounded-br-lg";
     return radius;
@@ -79,12 +79,14 @@ const GridCard: React.FC<GridCardProps> = ({
   return (
     <div className={`flex flex-col h-full w-full ${className}`}>
       {title && (
-        <p
-          ref={titleRef}
-          className="text-white/80 text-3xl uppercase mb-3 whitespace-nowrap"
-        >
-          {title}
-        </p>
+        <div className="bg-gray-800 -mx-4 -mt-4 px-8 pt-8 pb-3  overflow-hidden">
+          <p
+            ref={titleRef}
+            className="text-black text-3xl uppercase whitespace-nowrap"
+          >
+            {title}
+          </p>
+        </div>
       )}
 
       <div
@@ -92,7 +94,7 @@ const GridCard: React.FC<GridCardProps> = ({
         style={{
           gridTemplateRows: `repeat(${rows}, 1fr)`,
           gridTemplateColumns: `repeat(${cols}, 1fr)`,
-          gap: `${gap * 4}px`,
+          gap: `${gap * 1}px`,
         }}
       >
         {Array.from({ length: total }).map((_, i) => {
@@ -102,7 +104,7 @@ const GridCard: React.FC<GridCardProps> = ({
           return (
             <div
               key={i}
-              className={`bg-purple-500/10 flex flex-col items-center justify-center gap-1 p-2 overflow-hidden ${getRadiusClass(i)}`}
+              className={`cursor-target bg-purple-500/10 flex flex-col items-center justify-center gap-1 p-2 overflow-hidden ${getRadiusClass(i)}`}
             >
               {item?.image && (
                 <div className="relative flex-1 w-full min-h-0">
