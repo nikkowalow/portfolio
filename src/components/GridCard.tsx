@@ -40,31 +40,6 @@ const GridCard: React.FC<GridCardProps> = ({
   const total = rows * cols;
   const titleRef = useRef<HTMLParagraphElement>(null);
 
-  useEffect(() => {
-    if (!titleRef.current || !title) return;
-
-    const el = titleRef.current;
-
-    const calculate = () => {
-      el.style.letterSpacing = "0px";
-      const parentWidth = el.parentElement?.clientWidth ?? 0;
-      const textWidth = el.scrollWidth;
-      const charCount = title.length;
-
-      if (charCount > 1 && parentWidth > textWidth) {
-        el.style.letterSpacing = `${(parentWidth - textWidth) / (charCount - 1)}px`;
-      } else {
-        el.style.letterSpacing = "0px";
-      }
-    };
-
-    calculate();
-
-    const observer = new ResizeObserver(calculate);
-    if (el.parentElement) observer.observe(el.parentElement);
-    return () => observer.disconnect();
-  }, [title]);
-
   const getRadiusClass = (i: number) => {
     const row = Math.floor(i / cols);
     const col = i % cols;
@@ -79,10 +54,10 @@ const GridCard: React.FC<GridCardProps> = ({
   return (
     <div className={`flex flex-col h-full w-full ${className}`}>
       {title && (
-        <div className="bg-gray-800 -mx-4 -mt-4 px-8 pt-8 pb-3  overflow-hidden">
+        <div className="bg-gray-800 -mx-4 -mt-4 px-8 pt-5 overflow-hidden">
           <p
             ref={titleRef}
-            className="text-black text-3xl uppercase whitespace-nowrap"
+            className="text-black text-bold text-[40px] uppercase whitespace-nowrap"
           >
             {title}
           </p>
@@ -115,11 +90,6 @@ const GridCard: React.FC<GridCardProps> = ({
                     className={`object-contain ${item.image.rounded ? "rounded-full" : ""}`}
                   />
                 </div>
-              )}
-              {label && (
-                <span className="text-white/70 text-xs text-center leading-tight shrink-0">
-                  {label}
-                </span>
               )}
             </div>
           );

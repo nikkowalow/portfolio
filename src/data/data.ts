@@ -3,7 +3,7 @@ export const cubeImage = {
   alt: "Cube Exchange",
   width: 70,
   height: 200,
-  rounded: true,
+  //   rounded: true,
 };
 
 export const nationImage = {
@@ -27,9 +27,23 @@ export const congressionalAppChallengeImage = {
   height: 200,
 };
 
+export const orderBookImage = {
+  src: "/icons/orderbook.png",
+  alt: "Order Book Simulator",
+  width: 280,
+  height: 200,
+};
+
 export const ohioStateImage = {
   src: "/icons/osu.png",
   alt: "Ohio State University",
+  width: 100,
+  height: 200,
+};
+
+export const lfhsImage = {
+  src: "/icons/lfhs.png",
+  alt: "LFHS",
   width: 100,
   height: 200,
 };
@@ -90,7 +104,7 @@ export const projects = [
     location: "Hackathon",
     date: "June 2020",
     award: "1st place · Illinois",
-    image: congressionalAppChallengeImage,
+    image: orderBookImage,
     bullets: [
       "Built a skin cancer pre-diagnosis suite in Python, React, and SQL.",
       "Trained an ML model to classify benign vs. malignant lesions at 83% accuracy.",
@@ -112,6 +126,12 @@ export const projects = [
 ];
 
 export const education = [
+  {
+    school: "Lake Forest High School",
+    location: "Lake Forest, IL",
+    date: "Aug 2017 – May 2021",
+    image: lfhsImage,
+  },
   {
     school: "Ohio State University",
     degree: "B.S. Computer Science & Engineering",
@@ -148,4 +168,11 @@ export const skills: { category: string; items: string[] }[] = [
     category: "Blockchain",
     items: ["Solana", "Rust smart contracts", "Web3"],
   },
+];
+
+export const links: {}[] = [
+  { name: "GitHub", url: "https://github.com" },
+  { name: "LinkedIn", url: "https://linkedin.com" },
+  { name: "Email", url: "mailto:nikkokowalow@gmail.com" },
+  { name: "X", url: "https://x.com" },
 ];

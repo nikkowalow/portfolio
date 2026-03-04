@@ -3,6 +3,7 @@
 import "../styles/fonts.css";
 import "@/app/globals.css";
 import Bento from "@/components/Bento";
+import BentoCard from "@/components/BentoCard";
 import TargetCursor from "@/components/TargetCursor";
 import {
   profile,
@@ -10,6 +11,7 @@ import {
   workExperience,
   projects,
   skills,
+  links,
 } from "@/data/data";
 
 const languages = skills[0].items.map((item) => ({ title: item }));
@@ -38,7 +40,15 @@ export default function Home() {
         particleCount={0}
         glowColor="255, 255, 255"
         disableAnimations={false}
-        data={[profile, education, workExperience, projects, languages, tools]}
+        data={[
+          profile,
+          education,
+          workExperience,
+          projects,
+          languages,
+          tools,
+          links,
+        ]}
       />
     </main>
   );
