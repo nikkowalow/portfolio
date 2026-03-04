@@ -263,7 +263,9 @@ export const LogoLoop = React.memo<LogoLoopProps>(
       const sequenceHeight = sequenceRect?.height ?? 0;
       if (isVertical) {
         const parentHeight =
-          containerRef.current?.parentElement?.clientHeight ?? 0;
+          containerRef.current?.clientHeight ??
+          containerRef.current?.parentElement?.clientHeight ??
+          0;
         if (containerRef.current && parentHeight > 0) {
           const targetHeight = Math.ceil(parentHeight);
           if (containerRef.current.style.height !== `${targetHeight}px`)

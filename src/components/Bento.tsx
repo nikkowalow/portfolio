@@ -2,6 +2,8 @@ import React, { useRef, useEffect, useState, useCallback } from "react";
 import { gsap } from "gsap";
 import GridCard from "./GridCard";
 import BentoCard from "./BentoCard";
+import LogoLoop from "./LogoLoop";
+import TechStackCard from "./TechStackCard";
 
 export interface BentoCardProps {
   color?: string;
@@ -76,6 +78,24 @@ const updateCardGlowProperties = (
   card.style.setProperty("--glow-intensity", glow.toString());
   card.style.setProperty("--glow-radius", `${radius}px`);
 };
+
+const imageLogos = [
+  {
+    src: "/logos/company1.png",
+    alt: "Company 1",
+    href: "https://company1.com",
+  },
+  {
+    src: "/logos/company2.png",
+    alt: "Company 2",
+    href: "https://company2.com",
+  },
+  {
+    src: "/logos/company3.png",
+    alt: "Company 3",
+    href: "https://company3.com",
+  },
+];
 
 const ParticleCard: React.FC<{
   children: React.ReactNode;
@@ -562,12 +582,21 @@ const MagicBento: React.FC<BentoProps> = ({
     {
       color: "#060010",
       title: "Languages",
-      render: () => <GridCard title="Languages" items={data[4]} />,
+      render: () => (
+        <TechStackCard title={"Languages"} titleSide="left" direction="up" />
+      ),
     },
     {
       color: "#060010",
       title: "Tools & Frameworks",
-      render: () => <GridCard title="Tools & Frameworks" items={data[5]} />,
+      render: () => (
+        <TechStackCard
+          title={"Tools & Frameworks"}
+          titleSide="right"
+          direction="down"
+        />
+      ),
+      //   render: () => <GridCard title="Languages" items={data[4]} />,
     },
   ];
 
@@ -605,7 +634,7 @@ const MagicBento: React.FC<BentoProps> = ({
         @media (min-width: 1024px) {
 
         .card-responsive {
-            grid-template-columns: 0.5fr 0.8fr 1.2fr 1fr 0.5fr;
+            grid-template-columns: 0.3fr 0.6fr 1.4fr 1fr 0.3fr;
             grid-template-rows: repeat(2, 1fr);
             height: 100%;
         }
