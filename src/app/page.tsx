@@ -21,7 +21,7 @@ const tools = skills
 
 export default function Home() {
   return (
-    <main className="w-screen h-screen bg-[#060010] overflow-hidden">
+    <main className="w-screen h-screen bg-[#0f0f0f] overflow-hidden">
       <TargetCursor
         spinDuration={5}
         hideDefaultCursor
@@ -30,15 +30,15 @@ export default function Home() {
       />
       <Bento
         textAutoHide={true}
-        enableStars={false}
-        enableSpotlight={true}
+        enableStars
+        enableSpotlight
         enableBorderGlow={true}
         enableTilt={false}
         enableMagnetism={false}
         clickEffect
-        spotlightRadius={800}
-        particleCount={0}
-        glowColor="255, 255, 255"
+        spotlightRadius={400}
+        particleCount={12}
+        glowColor="132, 0, 255"
         disableAnimations={false}
         data={[
           profile,

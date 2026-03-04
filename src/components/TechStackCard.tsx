@@ -29,7 +29,7 @@ export default function TechStackCard({
     <div className="flex h-full w-full">
       {/* CONTENT */}
       <div
-        className={`flex-1 min-h-0 flex items-center justify-center overflow-hidden ${
+        className={`grayscale flex-1 min-h-0 flex items-center justify-center overflow-hidden ${
           isLeft ? "order-2" : "order-1"
         }`}
       >
@@ -42,7 +42,8 @@ export default function TechStackCard({
           pauseOnHover
           fadeOut
           direction={direction}
-          fadeOutColor="#060010"
+          fadeOutColor="#000"
+          className="bg-black"
         />
       </div>
     </div>
