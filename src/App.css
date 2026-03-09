@@ -1,0 +1,32 @@
+/* App-level styles — add overrides here if needed */
+.bento-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 2fr ;
+    gap: 10px;
+
+    grid-template-areas:
+        "work profile education links"
+        "work projects projects projects"
+        "work projects projects projects";
+}
+
+.work {
+    grid-area: work;
+}
+
+.profile {
+    grid-area: profile;
+}
+
+.education {
+    grid-area: education;
+}
+
+.links {
+    grid-area: links;
+}
+
+.projects {
+    grid-area: projects;
+}

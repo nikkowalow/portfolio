@@ -1,4 +1,10 @@
-import React, { useEffect, useRef, useCallback, useMemo } from "react";
+import React, {
+  useEffect,
+  useRef,
+  useCallback,
+  useMemo,
+  useState,
+} from "react";
 
 const DEFAULT_INNER_GRADIENT =
   "linear-gradient(145deg,#60496e8c 0%,#71C4FF44 100%)";
@@ -57,6 +63,11 @@ interface ProfileCardProps {
   contactText?: string;
   showUserInfo?: boolean;
   onContactClick?: () => void;
+  /** Grid placement — mirrors the Card component's props */
+  colSpan?: 1 | 2 | 3 | 4;
+  rowSpan?: 1 | 2 | 3;
+  colStart?: 1 | 2 | 3 | 4;
+  rowStart?: 1 | 2 | 3;
 }
 
 interface TiltEngine {
@@ -67,6 +78,11 @@ interface TiltEngine {
   getCurrent: () => { x: number; y: number; tx: number; ty: number };
   cancel: () => void;
 }
+
+const colSpanMap: Record<number, string> = { 1: "col-span-1", 2: "col-span-2", 3: "col-span-3", 4: "col-span-4" };
+const rowSpanMap: Record<number, string> = { 1: "row-span-1", 2: "row-span-2", 3: "row-span-3" };
+const colStartMap: Record<number, string> = { 1: "col-start-1", 2: "col-start-2", 3: "col-start-3", 4: "col-start-4" };
+const rowStartMap: Record<number, string> = { 1: "row-start-1", 2: "row-start-2", 3: "row-start-3" };
 
 const ProfileCardComponent: React.FC<ProfileCardProps> = ({
   avatarUrl = "<Placeholder for avatar URL>",
@@ -88,6 +104,10 @@ const ProfileCardComponent: React.FC<ProfileCardProps> = ({
   contactText = "Contact",
   showUserInfo = true,
   onContactClick,
+  colSpan = 1,
+  rowSpan = 1,
+  colStart,
+  rowStart,
 }) => {
   const wrapRef = useRef<HTMLDivElement>(null);
   const shellRef = useRef<HTMLDivElement>(null);
@@ -475,7 +495,14 @@ const ProfileCardComponent: React.FC<ProfileCardProps> = ({
   return (
     <div
       ref={wrapRef}
-      className={`relative touch-none ${className}`.trim()}
+      className={[
+        "relative touch-none h-full",
+        colSpanMap[colSpan],
+        rowSpanMap[rowSpan],
+        colStart ? colStartMap[colStart] : "",
+        rowStart ? rowStartMap[rowStart] : "",
+        className,
+      ].filter(Boolean).join(" ")}
       style={
         {
           perspective: "500px",
@@ -494,13 +521,12 @@ const ProfileCardComponent: React.FC<ProfileCardProps> = ({
           }}
         />
       )}
-      <div ref={shellRef} className="relative z-[1] group">
+      <div ref={shellRef} className="relative z-[1] group h-full">
         <section
           className="grid relative overflow-hidden"
           style={{
-            height: "80svh",
-            maxHeight: "540px",
-            aspectRatio: "0.718",
+            height: "100%",
+            containerType: "size",
             borderRadius: cardRadius,
             backgroundBlendMode: "color-dodge, normal, normal, normal",
             boxShadow:
@@ -576,7 +602,7 @@ const ProfileCardComponent: React.FC<ProfileCardProps> = ({
                   className="absolute z-[2] flex items-center justify-between backdrop-blur-[30px] border border-white/10 pointer-events-auto"
                   style={
                     {
-                      "--ui-inset": "20px",
+                      "--ui-inset": "4cqw",
                       "--ui-radius-bias": "6px",
                       bottom: "var(--ui-inset)",
                       left: "var(--ui-inset)",
@@ -584,14 +610,14 @@ const ProfileCardComponent: React.FC<ProfileCardProps> = ({
                       background: "rgba(255, 255, 255, 0.1)",
                       borderRadius:
                         "calc(max(0px, var(--card-radius) - var(--ui-inset) + var(--ui-radius-bias)))",
-                      padding: "12px 14px",
+                      padding: "2.5cqw 3cqw",
                     } as React.CSSProperties
                   }
                 >
                   <div className="flex items-center gap-3">
                     <div
                       className="rounded-full overflow-hidden border border-white/10 flex-shrink-0"
-                      style={{ width: "48px", height: "48px" }}
+                      style={{ width: "clamp(28px, 10cqw, 48px)", height: "clamp(28px, 10cqw, 48px)" }}
                     >
                       <img
                         className="w-full h-full object-cover rounded-full"
@@ -612,23 +638,25 @@ const ProfileCardComponent: React.FC<ProfileCardProps> = ({
                       />
                     </div>
                     <div className="flex flex-col items-start gap-1.5">
-                      <div className="text-sm font-medium text-white/90 leading-none">
+                      <div className="font-medium text-white/90 leading-none" style={{ fontSize: "clamp(9px, 3.5cqw, 14px)" }}>
                         @{handle}
                       </div>
-                      <div className="text-sm text-white/70 leading-none">
+                      <div className="text-white/70 leading-none" style={{ fontSize: "clamp(9px, 3cqw, 13px)" }}>
                         {status}
                       </div>
                     </div>
                   </div>
                   <button
-                    className="border border-white/10 rounded-lg px-4 py-3 text-xs font-semibold text-white/90 cursor-pointer backdrop-blur-[10px] transition-all duration-200 ease-out hover:border-white/40 hover:-translate-y-px"
-                    onClick={handleContactClick}
+                    className="border border-white/10 rounded-lg font-semibold text-white/90 cursor-pointer backdrop-blur-[10px] transition-all duration-200 ease-out hover:border-white/40 hover:-translate-y-px"
                     style={{
+                      fontSize: "clamp(9px, 2.8cqw, 12px)",
+                      padding: "2cqw 2.5cqw",
                       pointerEvents: "auto",
                       display: "block",
                       gridArea: "auto",
                       borderRadius: "8px",
                     }}
+                    onClick={handleContactClick}
                     type="button"
                     aria-label={`Contact ${name || "user"}`}
                   >
@@ -652,12 +680,12 @@ const ProfileCardComponent: React.FC<ProfileCardProps> = ({
             >
               <div
                 className="w-full absolute flex flex-col"
-                style={{ top: "3em", display: "flex", gridArea: "auto" }}
+                style={{ top: "8cqh", display: "flex", gridArea: "auto" }}
               >
                 <h3
                   className="font-semibold m-0"
                   style={{
-                    fontSize: "min(5svh, 3em)",
+                    fontSize: "clamp(1rem, 10cqw, 3rem)",
                     backgroundImage:
                       "linear-gradient(to bottom, #fff, #6f6fbe)",
                     backgroundSize: "1em 1.5em",
@@ -676,8 +704,8 @@ const ProfileCardComponent: React.FC<ProfileCardProps> = ({
                   className="font-semibold whitespace-nowrap mx-auto w-min"
                   style={{
                     position: "relative",
-                    top: "-12px",
-                    fontSize: "16px",
+                    top: "-1.5cqh",
+                    fontSize: "clamp(0.65rem, 4cqw, 1rem)",
                     margin: "0 auto",
                     backgroundImage:
                       "linear-gradient(to bottom, #fff, #4a4ac0)",

@@ -263,9 +263,7 @@ export const LogoLoop = React.memo<LogoLoopProps>(
       const sequenceHeight = sequenceRect?.height ?? 0;
       if (isVertical) {
         const parentHeight =
-          containerRef.current?.clientHeight ??
-          containerRef.current?.parentElement?.clientHeight ??
-          0;
+          containerRef.current?.parentElement?.clientHeight ?? 0;
         if (containerRef.current && parentHeight > 0) {
           const targetHeight = Math.ceil(parentHeight);
           if (containerRef.current.style.height !== `${targetHeight}px`)
@@ -354,7 +352,7 @@ export const LogoLoop = React.memo<LogoLoopProps>(
           return (
             <li
               className={cx(
-                "cursor-target flex-none text-[length:var(--logoloop-logoHeight)] leading-[1]",
+                "flex-none text-[length:var(--logoloop-logoHeight)] leading-[1]",
                 isVertical
                   ? "mb-[var(--logoloop-gap)]"
                   : "mr-[var(--logoloop-gap)]",
@@ -385,7 +383,7 @@ export const LogoLoop = React.memo<LogoLoopProps>(
         ) : (
           <img
             className={cx(
-              "h-[var(--logoloop-logoHeight)] w-auto block object-contain",
+              "h-[var(--logoloop-logoHeight)] w-[var(--logoloop-logoHeight)] block object-contain",
               "[-webkit-user-drag:none] pointer-events-none",
               "[image-rendering:-webkit-optimize-contrast]",
               "motion-reduce:transition-none",
