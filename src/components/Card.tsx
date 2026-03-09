@@ -77,7 +77,12 @@ interface CardHeaderProps {
   action?: ReactNode;
 }
 
-export function CardHeader({ icon, title, className = "", action }: CardHeaderProps) {
+export function CardHeader({
+  icon,
+  title,
+  className = "",
+  action,
+}: CardHeaderProps) {
   return (
     <div
       className={`bg-black/80 flex items-center gap-2 shrink-0 px-5 py-2 ${className}`}
