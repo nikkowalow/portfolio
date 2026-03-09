@@ -217,13 +217,13 @@ export const skills: {
 export const links: {}[] = [
   {
     name: "GitHub",
-    url: "https://github.com",
+    url: "https://github.com/nikkowalow",
     image: { src: "/formia/github.png", alt: "GitHub", width: 20, height: 20 },
     backgroundColor: "rgb(8,191,80)",
   },
   {
     name: "LinkedIn",
-    url: "https://linkedin.com",
+    url: "https://www.linkedin.com/in/nikkokowalow/",
     image: {
       src: "/formia/linkedin.png",
       alt: "LinkedIn",
@@ -234,13 +234,13 @@ export const links: {}[] = [
   },
   {
     name: "Email",
-    url: "mailto:nikkokowalow@gmail.com",
+    url: "mailto:nikkopkowalow@gmail.com",
     image: { src: "/formia/email.png", alt: "Email", width: 20, height: 20 },
     backgroundColor: "rgb(252, 169, 25)",
   },
   {
     name: "X",
-    url: "https://x.com",
+    url: "https://x.com/yieldmaxxer",
     image: {
       src: "/formia/x.png",
       alt: "X",
