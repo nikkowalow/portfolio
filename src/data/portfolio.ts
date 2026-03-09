@@ -172,6 +172,10 @@ export const profile = [
   },
 ];
 
+const formia = false;
+
+const logoPath = formia ? "/tech_logos/formia/" : "/tech_logos/";
+
 export const skills: {
   category: string;
   items: { name: string; image?: string }[];
@@ -179,34 +183,34 @@ export const skills: {
   {
     category: "Languages",
     items: [
-      { name: "Python", image: "/tech_logos/python.png" },
-      { name: "TypeScript", image: "/tech_logos/ts.svg" },
-      { name: "Rust", image: "/tech_logos/rust.png" },
-      { name: "SQL", image: "/tech_logos/psql.png" },
-      { name: "C/C++", image: "/tech_logos/cpp.png" },
-      { name: "Java", image: "/tech_logos/java.png" },
+      { name: "Python", image: `${logoPath}python.png` },
+      { name: "TypeScript", image: `${logoPath}ts.svg` },
+      { name: "Rust", image: `${logoPath}rust.png` },
+      { name: "SQL", image: `${logoPath}psql.png` },
+      { name: "C/C++", image: `${logoPath}cpp.png` },
+      { name: "Java", image: `${logoPath}java.png` },
     ],
   },
   {
     category: "Frameworks",
     items: [
-      { name: "React", image: "/tech_logos/react.png" },
-      { name: "Next.js", image: "/tech_logos/nextjs.png" },
-      { name: "Tailwind CSS", image: "/tech_logos/tailwindcss.svg" },
-      { name: "Git", image: "/tech_logos/git.png" },
-      { name: "Docker", image: "/tech_logos/docker.png" },
-      { name: "Linux", image: "/tech_logos/linux.png" },
-      { name: "AWS", image: "/tech_logos/aws.png" },
-      { name: "TimescaleDB", image: "/tech_logos/timescale.png" },
-      { name: "Figma", image: "/tech_logos/figma.svg" },
-      { name: "OAuth 2.0", image: "/tech_logos/oauth.png" },
+      { name: "React", image: `${logoPath}react.png` },
+      { name: "Next.js", image: `${logoPath}nextjs.png` },
+      { name: "Tailwind CSS", image: `${logoPath}tailwindcss.svg` },
+      { name: "Git", image: `${logoPath}git.png` },
+      { name: "Docker", image: `${logoPath}docker.png` },
+      { name: "Linux", image: `${logoPath}linux.png` },
+      { name: "AWS", image: `${logoPath}aws.png` },
+      { name: "TimescaleDB", image: `${logoPath}timescale.png` },
+      { name: "Figma", image: `${logoPath}figma.svg` },
+      { name: "OAuth 2.0", image: `${logoPath}oauth.png` },
     ],
   },
   {
     category: "Blockchain",
     items: [
-      { name: "Solana", image: "/tech_logos/solana.png" },
-      { name: "Rust smart contracts", image: "/tech_logos/rust.png" },
+      { name: "Solana", image: `${logoPath}solana.png` },
+      { name: "Rust smart contracts", image: `${logoPath}rust.png` },
       { name: "Web3" },
     ],
   },
