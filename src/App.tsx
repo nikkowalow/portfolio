@@ -87,7 +87,7 @@ function App() {
           grainScale={0.9}
           grainAnimated={false}
           contrast={1.35}
-          gamma={1.5}
+          gamma={1}
           saturation={1.05}
           centerX={0}
           centerY={0}
@@ -116,7 +116,7 @@ function App() {
         {/* Bento grid */}
         <div className="bento-grid flex-1 h-full min-w-0">
           <Card flush className="work">
-            <CardHeader title="Work Experience" className="px-4 pt-3" />
+            <CardHeader title="Work Experience" className="" />
             <BentoContent items={workItems} layout="list" />
           </Card>
 
@@ -138,17 +138,17 @@ function App() {
           />
 
           <Card flush className="education">
-            <CardHeader title="Education" className="px-4 pt-3" />
+            <CardHeader title="Education" className="" />
             <BentoContent items={educationItems} layout="list" />
           </Card>
 
           <Card flush className="links">
-            <CardHeader title="Connect" className="px-4 pt-3" />
+            <CardHeader title="Connect" className="" />
             <BentoContent items={linkItems} layout="links" />
           </Card>
 
           <Card flush className="projects">
-            <CardHeader title="Projects & Hackathons" className="px-4 pt-3" />
+            <CardHeader title="Projects & Hackathons" className="" />
             <BentoContent items={projectItems} layout="grid" />
           </Card>
         </div>

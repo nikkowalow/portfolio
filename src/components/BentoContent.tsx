@@ -56,7 +56,7 @@ function Item({ item }: { item: ContentItem }) {
       {/* Background color — separate layer so opacity doesn't affect image */}
       <div
         className="absolute inset-0"
-        style={{ backgroundColor: "black", opacity: 0.6 }}
+        style={{ backgroundColor: "black", opacity: 0.7 }}
       />
 
       {/* Image — fills entire tile at full opacity */}

@@ -79,10 +79,10 @@ interface CardHeaderProps {
 export function CardHeader({ icon, title, className = "" }: CardHeaderProps) {
   return (
     <div
-      className={`bg-black opacity-80 flex items-center gap-2 shrink-0 ${className}`}
+      className={`bg-black/80 flex items-center gap-2 shrink-0 px-5 py-2 ${className}`}
     >
       {icon && <span className="text-white/40 flex items-center">{icon}</span>}
-      <span className="text-xl font-semibold tracking-widest uppercase text-white/70">
+      <span className="text-4xl italic font-semibold tracking-widest uppercase text-white/70">
         {title}
       </span>
     </div>
