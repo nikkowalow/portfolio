@@ -51,10 +51,15 @@ function Item({ item }: { item: ContentItem }) {
   return (
     <Tag
       {...linkProps}
-      className="cursor-target relative overflow-hidden group flex-1 min-h-0 block border-r border-b border-dotted border-white/15"
-      style={{ backgroundColor: "black" }}
+      className="cursor-target relative overflow-hidden group flex-1 min-h-0 block border border-dotted border-white/25"
     >
-      {/* Image — fills entire tile */}
+      {/* Background color — separate layer so opacity doesn't affect image */}
+      <div
+        className="absolute inset-0"
+        style={{ backgroundColor: "black", opacity: 0.6 }}
+      />
+
+      {/* Image — fills entire tile at full opacity */}
       {item.image && (
         <img
           src={item.image.src}

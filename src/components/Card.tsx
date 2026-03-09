@@ -78,9 +78,11 @@ interface CardHeaderProps {
 
 export function CardHeader({ icon, title, className = "" }: CardHeaderProps) {
   return (
-    <div className={`flex items-center gap-2 mb-2 shrink-0 ${className}`}>
+    <div
+      className={`bg-black opacity-80 flex items-center gap-2 shrink-0 ${className}`}
+    >
       {icon && <span className="text-white/40 flex items-center">{icon}</span>}
-      <span className="text-xl font-semibold tracking-widest uppercase text-white/40">
+      <span className="text-xl font-semibold tracking-widest uppercase text-white/70">
         {title}
       </span>
     </div>
@@ -88,5 +90,5 @@ export function CardHeader({ icon, title, className = "" }: CardHeaderProps) {
 }
 
 export function CardDivider({ className = "" }: { className?: string }) {
-  return <hr className={`border-white/8 my-4 shrink-0 ${className}`} />;
+  return <hr className={`border-white my-4 shrink-0 ${className}`} />;
 }
