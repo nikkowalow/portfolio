@@ -1,4 +1,5 @@
 import "./App.css";
+import { useEffect, useState } from "react";
 import { Card, CardHeader } from "./components/Card";
 import ProfileCard from "./components/ProfileCard";
 import { BentoContent, type ContentItem } from "./components/BentoContent";
@@ -12,6 +13,24 @@ import {
 import TargetCursor from "./components/TargetCursor";
 import { LogoLoop } from "./components/LogoLoop";
 import Grainient from "./components/Grainient";
+
+function useLogoHeight() {
+  const getHeight = () => {
+    const w = window.innerWidth;
+    if (w < 640) return 32;
+    if (w < 768) return 40;
+    if (w < 1024) return 48;
+    if (w < 1280) return 56;
+    return 64;
+  };
+  const [logoHeight, setLogoHeight] = useState(getHeight);
+  useEffect(() => {
+    const handler = () => setLogoHeight(getHeight());
+    window.addEventListener("resize", handler);
+    return () => window.removeEventListener("resize", handler);
+  }, []);
+  return logoHeight;
+}
 
 // ── Data → ContentItem mappers ────────────────────────────────
 const workItems: ContentItem[] = workExperience.map((j) => ({
@@ -67,8 +86,9 @@ const rightLogos = [
 
 // ── Layout ────────────────────────────────────────────────────
 function App() {
+  const logoHeight = useLogoHeight();
   return (
-    <main className="h-screen p-3 flex gap-3 relative">
+    <main className="h-screen  flex gap-3 relative">
       <div style={{ position: "fixed", inset: 0, zIndex: 0 }}>
         <Grainient
           color1="#3b0047"
@@ -101,21 +121,22 @@ function App() {
         parallaxOn
         hoverDuration={1}
       />
-      <div className="relative z-10 flex gap-3 flex-1 h-full min-w-0">
+      <div className="relative z-10 flex  flex-1 h-full min-w-0">
         {/* Left ticker */}
-        <div className="w-16 shrink-0 h-full">
+        <div className=" shrink-0 h-full flex items-center">
           <LogoLoop
             logos={leftLogos}
             direction="up"
             speed={30}
-            logoHeight={52}
-            gap={20}
-            fadeOut
+            logoHeight={logoHeight}
+            gap={24}
+            // fadeOut
             fadeOutColor="#09090b"
+            className="pl-3"
           />
         </div>
         {/* Bento grid */}
-        <div className="bento-grid flex-1 h-full min-w-0">
+        <div className="p-3 bento-grid flex-1 h-full min-w-0">
           <Card flush className="work">
             <CardHeader title="Work Experience" className="" />
             <BentoContent items={workItems} layout="list" />
@@ -159,15 +180,16 @@ function App() {
           </Card>
         </div>
         {/* Right ticker */}
-        <div className="w-16 shrink-0 h-full">
+        <div className=" shrink-0 h-full flex items-center">
           <LogoLoop
             logos={rightLogos}
             direction="down"
             speed={30}
-            logoHeight={52}
-            gap={20}
-            fadeOut
+            logoHeight={logoHeight}
+            gap={24}
+            // fadeOut
             fadeOutColor="#09090b"
+            className="pr-3"
           />
         </div>
       </div>

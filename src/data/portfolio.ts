@@ -189,6 +189,8 @@ export const skills: {
       { name: "SQL", image: `${logoPath}psql.png` },
       { name: "C/C++", image: `${logoPath}cpp.png` },
       { name: "Java", image: `${logoPath}java.png` },
+      { name: "JavaScript", image: `${logoPath}js.png` },
+      { name: "Go", image: `${logoPath}go.png` },
     ],
   },
   {
@@ -204,6 +206,10 @@ export const skills: {
       { name: "TimescaleDB", image: `${logoPath}timescale.png` },
       { name: "Figma", image: `${logoPath}figma.svg` },
       { name: "OAuth 2.0", image: `${logoPath}oauth.png` },
+      { name: "Expo", image: `${logoPath}expo.png` },
+      { name: "Bash", image: `${logoPath}bash.png` },
+      { name: "Render", image: `${logoPath}render.png` },
+      { name: "Supabase", image: `${logoPath}supabase.png` },
     ],
   },
   {

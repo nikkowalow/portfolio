@@ -532,7 +532,7 @@ export const LogoLoop = React.memo<LogoLoopProps>(
           className={cx(
             "flex will-change-transform select-none relative z-0",
             "motion-reduce:transform-none",
-            isVertical ? "flex-col h-max w-full" : "flex-row w-max",
+            isVertical ? "flex-col h-max w-full" : "flex-row",
           )}
           ref={trackRef}
           onMouseEnter={handleMouseEnter}
