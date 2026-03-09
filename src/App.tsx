@@ -27,10 +27,11 @@ const workItems: ContentItem[] = workExperience.map((j) => ({
 const projectItems: ContentItem[] = projects.map((p) => ({
   label: p.title,
   date: p.date,
-  badge: p.award,
+  //   badge: p.badge,
   bullets: p.bullets,
   image: p.image,
   backgroundColor: p.backgroundColor,
+  award: p.award,
 }));
 
 const educationItems: ContentItem[] = education.map((e) => ({
@@ -149,7 +150,12 @@ function App() {
 
           <Card flush className="projects">
             <CardHeader title="Projects & Hackathons" className="" />
-            <BentoContent items={projectItems} layout="grid" />
+            <div className="relative flex-1 min-h-0 flex flex-col">
+              <BentoContent items={projectItems} layout="grid" />
+              {/* <div className="absolute top-0 right-0 w-48 h-48 pointer-events-none">
+                <Badge />
+              </div> */}
+            </div>
           </Card>
         </div>
         {/* Right ticker */}

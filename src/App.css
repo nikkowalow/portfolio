@@ -30,3 +30,17 @@
 .projects {
     grid-area: projects;
 }
+
+@keyframes shimmer {
+    0% {
+        transform: translateX(-100%) skewX(-20deg);
+    }
+
+    100% {
+        transform: translateX(100%) skewX(-20deg);
+    }
+}
+
+.animate-shimmer {
+    animation: shimmer 1.2s ease-in-out;
+}

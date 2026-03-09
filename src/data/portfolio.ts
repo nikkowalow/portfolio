@@ -98,7 +98,7 @@ export const projects = [
     title: "Solana Season Hackathon",
     location: "Hackathon",
     date: "June 2021",
-    award: "3rd place · $5,000",
+    award: 3,
     image: solanaImage,
     bullets: [
       "Built a decentralized ticketing platform on Solana using Rust, React, and smart contracts.",
@@ -110,7 +110,7 @@ export const projects = [
     title: "Congressional App Challenge",
     location: "Hackathon",
     date: "June 2020",
-    award: "1st place · Illinois",
+    award: 1,
     image: congressionalAppChallengeImage,
     bullets: [
       "Built a skin cancer pre-diagnosis suite in Python, React, and SQL.",
@@ -123,7 +123,6 @@ export const projects = [
     title: "Order Book Simulator",
     location: "Hackathon",
     date: "June 2020",
-    award: "1st place · Illinois",
     image: orderBookImage,
     bullets: [
       "Built a skin cancer pre-diagnosis suite in Python, React, and SQL.",
@@ -135,7 +134,6 @@ export const projects = [
     title: "Osmium - Financial Tracker",
     location: "Hackathon",
     date: "June 2020",
-    award: "1st place · Illinois",
     image: osmiumImage,
     bullets: [
       "Built a skin cancer pre-diagnosis suite in Python, React, and SQL.",
