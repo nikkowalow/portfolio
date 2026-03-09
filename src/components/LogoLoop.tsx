@@ -386,6 +386,7 @@ export const LogoLoop = React.memo<LogoLoopProps>(
               "h-[var(--logoloop-logoHeight)] w-[var(--logoloop-logoHeight)] block object-contain",
               "[-webkit-user-drag:none] pointer-events-none",
               "[image-rendering:-webkit-optimize-contrast]",
+              //   "grayscale hover:grayscale-0 transition-[filter] duration-200",
               "motion-reduce:transition-none",
               scaleOnHover &&
                 "transition-transform duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] group-hover/item:scale-120",
@@ -426,19 +427,28 @@ export const LogoLoop = React.memo<LogoLoopProps>(
           content
         );
 
+        const label = isNodeItem
+          ? ((item as any).title ?? (item as any).ariaLabel)
+          : ((item as any).alt ?? (item as any).title);
+
         return (
           <li
             className={cx(
-              "flex-none text-[length:var(--logoloop-logoHeight)] leading-[1]",
+              "flex-none text-[length:var(--logoloop-logoHeight)] leading-[1] relative group/item",
               isVertical
                 ? "mb-[var(--logoloop-gap)]"
                 : "mr-[var(--logoloop-gap)]",
-              scaleOnHover && "overflow-visible group/item",
+              "overflow-visible",
             )}
             key={key}
             role="listitem"
           >
             {inner}
+            {label && (
+              <span className="pointer-events-none absolute left-full top-1/2 -translate-y-1/2 ml-2 px-2 py-1 rounded bg-black/80 text-white text-[10px] font-medium whitespace-nowrap opacity-0 group-hover/item:opacity-100 transition-opacity duration-200 z-50">
+                {label}
+              </span>
+            )}
           </li>
         );
       },

@@ -1,6 +1,7 @@
 // ─── Universal bento card content component ───────────────────
 // Image fills the tile by default. Hover reveals all details.
 
+import { useState } from "react";
 import Badge from "./Badge";
 
 export interface ContentItem {
@@ -40,10 +41,13 @@ type Layout =
 interface BentoContentProps {
   items: ContentItem[];
   layout: Layout;
+  onExpandedChange?: (expanded: boolean) => void;
+  /** Controlled close: set to false to collapse from outside */
+  isExpanded?: boolean;
 }
 
 // ── Single tile — same regardless of layout ────────────────────
-function Item({ item }: { item: ContentItem }) {
+function Item({ item, onClick }: { item: ContentItem; onClick: () => void }) {
   const Tag = item.url ? "a" : "div";
   const linkProps = item.url
     ? {
@@ -56,6 +60,7 @@ function Item({ item }: { item: ContentItem }) {
   return (
     <Tag
       {...linkProps}
+      onClick={onClick}
       className="cursor-target relative overflow-hidden group flex-1 min-h-0 block border border-dotted border-white/25"
     >
       {/* Background color — separate layer so opacity doesn't affect image */}
@@ -152,8 +157,123 @@ const BadgeOverlay = ({ path }: BadgeOverlayProps) => (
   </div>
 );
 
+// ── Expanded panel ─────────────────────────────────────────────
+function ExpandedPanel({
+  item,
+  onClose,
+}: {
+  item: ContentItem;
+  onClose: () => void;
+}) {
+  return (
+    <div className="absolute inset-0 z-20 flex flex-col animate-in fade-in duration-200 overflow-hidden">
+      {/* Background */}
+      <div
+        className="absolute inset-0"
+        style={{ backgroundColor: "black", opacity: 0.85 }}
+      />
+      {item.image && (
+        <img
+          src={item.image.src}
+          alt={item.image.alt}
+          className="absolute inset-0 w-full h-full object-contain opacity-10"
+          style={{
+            padding: item.imagePadding ?? "0px",
+            filter: item.image.invert ? "invert(1)" : undefined,
+          }}
+        />
+      )}
+
+      {/* Content */}
+      <div className="relative flex flex-col h-full p-4 gap-3 backdrop-blur-md overflow-y-auto">
+        {/* Header */}
+        <div className="flex items-start justify-between gap-2">
+          <div className="flex items-center gap-3 min-w-0">
+            {item.image && (
+              <img
+                src={item.image.src}
+                alt={item.image.alt}
+                className="w-10 h-10 object-contain shrink-0"
+                style={{ filter: item.image.invert ? "invert(1)" : undefined }}
+              />
+            )}
+            <div className="min-w-0">
+              <p className="text-white font-bold text-sm leading-tight">
+                {item.label}
+              </p>
+              {item.sublabel && (
+                <p className="text-white/60 text-xs mt-0.5">{item.sublabel}</p>
+              )}
+              {item.detail && (
+                <p className="text-white/40 text-[10px] mt-0.5">
+                  {item.detail}
+                </p>
+              )}
+            </div>
+          </div>
+          <div className="text-right shrink-0">
+            {item.date && (
+              <p className="text-white/40 text-[10px]">{item.date}</p>
+            )}
+            {item.location && (
+              <p className="text-white/30 text-[10px]">{item.location}</p>
+            )}
+          </div>
+        </div>
+
+        {item.badge && (
+          <span className="self-start text-[9px] font-semibold bg-white/15 text-white/80 border border-white/20 rounded px-1.5 py-0.5 leading-none">
+            {item.badge}
+          </span>
+        )}
+
+        {item.bullets && item.bullets.length > 0 && (
+          <ul className="flex flex-col gap-2">
+            {item.bullets.map((b, i) => (
+              <li
+                key={i}
+                className="flex gap-2 text-xs text-white/70 leading-snug"
+              >
+                <span className="text-white/30 shrink-0 mt-px">•</span>
+                <span>{b}</span>
+              </li>
+            ))}
+          </ul>
+        )}
+
+        {item.techStack && item.techStack.length > 0 && (
+          <div className="flex flex-wrap gap-1.5 mt-auto pt-2">
+            {item.techStack.map((tech, i) => (
+              <span
+                key={i}
+                className="text-[9px] font-medium bg-white/10 text-white/60 border border-white/15 rounded-full px-2 py-0.5 leading-none"
+              >
+                {tech}
+              </span>
+            ))}
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
+
 // ── Main component ─────────────────────────────────────────────
-export function BentoContent({ items, layout }: BentoContentProps) {
+export function BentoContent({ items, layout, onExpandedChange, isExpanded }: BentoContentProps) {
+  const [expanded, setExpanded] = useState<number | null>(null);
+
+  const expandedItem = expanded !== null ? items[expanded] : null;
+
+  const setExpandedItem = (i: number | null) => {
+    setExpanded(i);
+    onExpandedChange?.(i !== null);
+  };
+
+  // Allow parent to collapse via isExpanded=false
+  if (isExpanded === false && expanded !== null) {
+    setExpanded(null);
+  }
+
   if (layout === "grid") {
     const cols = Math.ceil(Math.sqrt(items.length));
     return (
@@ -163,10 +283,15 @@ export function BentoContent({ items, layout }: BentoContentProps) {
           style={{ gridTemplateColumns: `repeat(${cols}, 1fr)` }}
         >
           {items.map((item, i) => (
-            <Item key={i} item={item} />
+            <Item key={i} item={item} onClick={() => setExpandedItem(i)} />
           ))}
         </div>
-        {/* {true && <BadgeOverlay />} */}
+        {expandedItem && (
+          <ExpandedPanel
+            item={expandedItem}
+            onClose={() => setExpandedItem(null)}
+          />
+        )}
       </div>
     );
   }
@@ -176,10 +301,15 @@ export function BentoContent({ items, layout }: BentoContentProps) {
       <div className="relative flex-1 min-h-0 flex flex-col">
         <div className="cursor-target flex-1 grid grid-cols-2 min-h-0">
           {items.map((item, i) => (
-            <Item key={i} item={item} />
+            <Item key={i} item={item} onClick={() => setExpandedItem(i)} />
           ))}
         </div>
-        {/* {true && <BadgeOverlay />} */}
+        {expandedItem && (
+          <ExpandedPanel
+            item={expandedItem}
+            onClose={() => setExpandedItem(null)}
+          />
+        )}
       </div>
     );
   }
@@ -189,10 +319,12 @@ export function BentoContent({ items, layout }: BentoContentProps) {
     <div className="relative flex flex-col flex-1 min-h-0">
       <div className="cursor-target flex flex-col flex-1 min-h-0">
         {items.map((item, i) => (
-          <Item key={i} item={item} />
+          <Item key={i} item={item} onClick={() => setExpandedItem(i)} />
         ))}
       </div>
-      {/* {hasBadge && <BadgeOverlay />} */}
+      {expandedItem && (
+        <ExpandedPanel item={expandedItem} onClose={() => setExpandedItem(null)} />
+      )}
     </div>
   );
 }

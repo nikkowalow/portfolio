@@ -85,8 +85,21 @@ const rightLogos = [
   .map((i) => ({ src: i.image!, alt: i.name }));
 
 // ── Layout ────────────────────────────────────────────────────
+const CloseButton = ({ onClick }: { onClick: () => void }) => (
+  <button
+    onClick={onClick}
+    className="text-white/40 hover:text-white/80 transition-colors text-xl leading-none"
+  >
+    ✕
+  </button>
+);
+
 function App() {
   const logoHeight = useLogoHeight();
+  const [workExpanded, setWorkExpanded] = useState(false);
+  const [eduExpanded, setEduExpanded] = useState(false);
+  const [linksExpanded, setLinksExpanded] = useState(false);
+  const [projectsExpanded, setProjectsExpanded] = useState(false);
   return (
     <main className="h-screen  flex gap-3 relative">
       <div style={{ position: "fixed", inset: 0, zIndex: 0 }}>
@@ -138,8 +151,8 @@ function App() {
         {/* Bento grid */}
         <div className="p-3 bento-grid flex-1 h-full min-w-0">
           <Card flush className="work">
-            <CardHeader title="Work Experience" className="" />
-            <BentoContent items={workItems} layout="list" />
+            <CardHeader title="Work Experience" className="" action={workExpanded ? <CloseButton onClick={() => setWorkExpanded(false)} /> : undefined} />
+            <BentoContent items={workItems} layout="list" onExpandedChange={setWorkExpanded} isExpanded={workExpanded} />
           </Card>
 
           <ProfileCard
@@ -160,19 +173,19 @@ function App() {
           />
 
           <Card flush className="education">
-            <CardHeader title="Education" className="" />
-            <BentoContent items={educationItems} layout="list" />
+            <CardHeader title="Education" className="" action={eduExpanded ? <CloseButton onClick={() => setEduExpanded(false)} /> : undefined} />
+            <BentoContent items={educationItems} layout="list" onExpandedChange={setEduExpanded} isExpanded={eduExpanded} />
           </Card>
 
           <Card flush className="links">
-            <CardHeader title="Connect" className="" />
-            <BentoContent items={linkItems} layout="links" />
+            <CardHeader title="Connect" className="" action={linksExpanded ? <CloseButton onClick={() => setLinksExpanded(false)} /> : undefined} />
+            <BentoContent items={linkItems} layout="links" onExpandedChange={setLinksExpanded} isExpanded={linksExpanded} />
           </Card>
 
           <Card flush className="projects">
-            <CardHeader title="Projects & Hackathons" className="" />
+            <CardHeader title="Projects & Hackathons" className="" action={projectsExpanded ? <CloseButton onClick={() => setProjectsExpanded(false)} /> : undefined} />
             <div className="relative flex-1 min-h-0 flex flex-col">
-              <BentoContent items={projectItems} layout="grid" />
+              <BentoContent items={projectItems} layout="grid" onExpandedChange={setProjectsExpanded} isExpanded={projectsExpanded} />
               {/* <div className="absolute top-0 right-0 w-48 h-48 pointer-events-none">
                 <Badge />
               </div> */}
