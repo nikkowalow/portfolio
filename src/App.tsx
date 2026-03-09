@@ -1,25 +1,16 @@
 import "./App.css";
-import { useEffect, useState } from "react";
 import { Card, CardHeader } from "./components/Card";
 import ProfileCard from "./components/ProfileCard";
 import { BentoContent, type ContentItem } from "./components/BentoContent";
-import { workExperience, projects, education, links, skills } from "./data/portfolio";
+import {
+  workExperience,
+  projects,
+  education,
+  links,
+  skills,
+} from "./data/portfolio";
 import TargetCursor from "./components/TargetCursor";
 import { LogoLoop } from "./components/LogoLoop";
-
-function useTickerSize() {
-  const compute = () => ({
-    logoHeight: Math.round(Math.min(68, Math.max(44, window.innerWidth * 0.045))),
-    width: Math.round(Math.min(88, Math.max(56, window.innerWidth * 0.055))),
-  });
-  const [size, setSize] = useState(compute);
-  useEffect(() => {
-    const handler = () => setSize(compute());
-    window.addEventListener("resize", handler);
-    return () => window.removeEventListener("resize", handler);
-  }, []);
-  return size;
-}
 
 // ── Data → ContentItem mappers ────────────────────────────────
 const workItems: ContentItem[] = workExperience.map((j) => ({

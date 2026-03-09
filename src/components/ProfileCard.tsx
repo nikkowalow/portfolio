@@ -1,10 +1,4 @@
-import React, {
-  useEffect,
-  useRef,
-  useCallback,
-  useMemo,
-  useState,
-} from "react";
+import React, { useEffect, useRef, useCallback, useMemo } from "react";
 
 const DEFAULT_INNER_GRADIENT =
   "linear-gradient(145deg,#60496e8c 0%,#71C4FF44 100%)";
@@ -79,10 +73,28 @@ interface TiltEngine {
   cancel: () => void;
 }
 
-const colSpanMap: Record<number, string> = { 1: "col-span-1", 2: "col-span-2", 3: "col-span-3", 4: "col-span-4" };
-const rowSpanMap: Record<number, string> = { 1: "row-span-1", 2: "row-span-2", 3: "row-span-3" };
-const colStartMap: Record<number, string> = { 1: "col-start-1", 2: "col-start-2", 3: "col-start-3", 4: "col-start-4" };
-const rowStartMap: Record<number, string> = { 1: "row-start-1", 2: "row-start-2", 3: "row-start-3" };
+const colSpanMap: Record<number, string> = {
+  1: "col-span-1",
+  2: "col-span-2",
+  3: "col-span-3",
+  4: "col-span-4",
+};
+const rowSpanMap: Record<number, string> = {
+  1: "row-span-1",
+  2: "row-span-2",
+  3: "row-span-3",
+};
+const colStartMap: Record<number, string> = {
+  1: "col-start-1",
+  2: "col-start-2",
+  3: "col-start-3",
+  4: "col-start-4",
+};
+const rowStartMap: Record<number, string> = {
+  1: "row-start-1",
+  2: "row-start-2",
+  3: "row-start-3",
+};
 
 const ProfileCardComponent: React.FC<ProfileCardProps> = ({
   avatarUrl = "<Placeholder for avatar URL>",
@@ -502,7 +514,9 @@ const ProfileCardComponent: React.FC<ProfileCardProps> = ({
         colStart ? colStartMap[colStart] : "",
         rowStart ? rowStartMap[rowStart] : "",
         className,
-      ].filter(Boolean).join(" ")}
+      ]
+        .filter(Boolean)
+        .join(" ")}
       style={
         {
           perspective: "500px",
@@ -617,7 +631,10 @@ const ProfileCardComponent: React.FC<ProfileCardProps> = ({
                   <div className="flex items-center gap-3">
                     <div
                       className="rounded-full overflow-hidden border border-white/10 flex-shrink-0"
-                      style={{ width: "clamp(28px, 10cqw, 48px)", height: "clamp(28px, 10cqw, 48px)" }}
+                      style={{
+                        width: "clamp(28px, 10cqw, 48px)",
+                        height: "clamp(28px, 10cqw, 48px)",
+                      }}
                     >
                       <img
                         className="w-full h-full object-cover rounded-full"
@@ -638,10 +655,16 @@ const ProfileCardComponent: React.FC<ProfileCardProps> = ({
                       />
                     </div>
                     <div className="flex flex-col items-start gap-1.5">
-                      <div className="font-medium text-white/90 leading-none" style={{ fontSize: "clamp(9px, 3.5cqw, 14px)" }}>
+                      <div
+                        className="font-medium text-white/90 leading-none"
+                        style={{ fontSize: "clamp(9px, 3.5cqw, 14px)" }}
+                      >
                         @{handle}
                       </div>
-                      <div className="text-white/70 leading-none" style={{ fontSize: "clamp(9px, 3cqw, 13px)" }}>
+                      <div
+                        className="text-white/70 leading-none"
+                        style={{ fontSize: "clamp(9px, 3cqw, 13px)" }}
+                      >
                         {status}
                       </div>
                     </div>
