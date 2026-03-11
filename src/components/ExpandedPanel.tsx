@@ -30,14 +30,14 @@ export function ExpandedPanel({ item }: ExpandedPanelProps) {
       />
 
       {/* Scrollable content */}
-      <div className="relative flex flex-col h-full p-6 gap-5 backdrop-blur-md overflow-y-auto">
+      <div className="relative flex flex-col h-full p-6 gap-3 backdrop-blur-md overflow-y-auto">
         {/* ── Row 1: logo left, role + date right ── */}
-        <div className="flex items-start justify-between gap-4">
+        <div className="flex items-start justify-between gap-4 max-h-[120px]">
           {item.image && (
             <img
               src={item.image.altSrc ?? item.image.src}
               alt={item.image.alt}
-              className="w-[50%] h-[50%] object-contain object-left-top shrink-0"
+              className={`max-h-full max-w-[40%] h-auto object-contain shrink-0${item.image.rounded ? " rounded-xl" : ""}`}
               style={{ filter: item.image.invert ? "invert(1)" : undefined }}
             />
           )}

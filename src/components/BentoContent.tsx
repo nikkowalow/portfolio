@@ -31,6 +31,7 @@ export interface ContentItem {
     width?: number;
     height?: number;
     invert?: boolean;
+    rounded?: boolean;
   };
   backgroundColor?: string;
   /** Padding inside the tile around the image. Defaults to "16px". Set "0" to fill edge-to-edge. */
@@ -51,7 +52,7 @@ interface BentoContentProps {
 }
 
 // ── Single tile — same regardless of layout ────────────────────
-function Item({ item, onClick }: { item: ContentItem; onClick: () => void }) {
+function Item({ item, onClick }: { item: ContentItem; onClick?: () => void }) {
   const Tag = item.url ? "a" : "div";
   const linkProps = item.url
     ? {
@@ -177,15 +178,9 @@ export function BentoContent({
       <div className="relative flex-1 min-h-0 flex flex-col">
         <div className="cursor-target flex-1 grid grid-cols-2 min-h-0">
           {items.map((item, i) => (
-            <Item key={i} item={item} onClick={() => setExpandedItem(i)} />
+            <Item key={i} item={item} />
           ))}
         </div>
-        {expandedItem && (
-          <ExpandedPanel
-            item={expandedItem}
-            onClose={() => setExpandedItem(null)}
-          />
-        )}
       </div>
     );
   }

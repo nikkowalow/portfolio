@@ -5,7 +5,7 @@ export const cubeImage = {
   alt: "Cube Exchange",
   width: 250,
   height: 250,
-  //   rounded: true,
+  rounded: true,
   fill: true,
 };
 
@@ -170,6 +170,9 @@ export const projects = [
       { name: "React", image: "/tech_logos/react.png" },
     ],
     images: [],
+    previewLink: {
+      url: "https://solana.com/news/announcing-winners-of-the-solana-season-hackathon",
+    },
   },
   {
     title: "Congressional App Challenge",
