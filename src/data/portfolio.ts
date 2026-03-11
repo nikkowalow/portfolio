@@ -21,7 +21,7 @@ export const nationImage = {
 
 export const solanaImage = {
   src: "/formia/solana.png",
-  altSrc: "/logos/solana.png",
+  altSrc: "/logos/solana.webp",
   alt: "Solana",
   width: 280,
   height: 50,

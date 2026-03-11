@@ -88,7 +88,7 @@ export function CardHeader({
       className={`bg-black/80 flex items-center gap-2 shrink-0 px-5 py-2 ${className}`}
     >
       {icon && <span className="text-white/40 flex items-center">{icon}</span>}
-      <span className="text-4xl italic tracking-widest uppercase text-white/70 flex-1">
+      <span className="text-[clamp(5px,1vw,48px)] italic tracking-widest uppercase text-white/70 flex-1">
         {title}
       </span>
       {action && <span className="ml-auto">{action}</span>}

@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import type { ContentItem } from "./BentoContent";
+import { ImageGrid } from "./ImageGrid";
 
 interface ExpandedPanelProps {
   item: ContentItem;
@@ -76,16 +77,7 @@ export function ExpandedPanel({ item }: ExpandedPanelProps) {
 
         {/* ── Row 3: extra images ── */}
         {item.images && item.images.length > 0 && (
-          <div className="flex flex-wrap gap-3">
-            {item.images.map((img, i) => (
-              <img
-                key={i}
-                src={img}
-                // alt={img.alt ?? ""}
-                className="rounded-xl h-28 w-auto object-contain rounded-lg"
-              />
-            ))}
-          </div>
+          <ImageGrid images={item.images} />
         )}
 
         {/* ── Row 4: tech stack logos (pinned to bottom) ── */}
