@@ -52,15 +52,24 @@ interface BentoContentProps {
 }
 
 // ── Single tile — same regardless of layout ────────────────────
-function Item({ item, onClick }: { item: ContentItem; onClick?: () => void }) {
-  const Tag = item.url ? "a" : "div";
-  const linkProps = item.url
-    ? {
-        href: item.url,
-        target: item.url.startsWith("mailto") ? "_self" : "_blank",
-        rel: "noopener noreferrer",
-      }
-    : {};
+function Item({
+  item,
+  onClick,
+  asLink,
+}: {
+  item: ContentItem;
+  onClick?: () => void;
+  asLink?: boolean;
+}) {
+  const Tag = asLink && item.url ? "a" : "div";
+  const linkProps =
+    asLink && item.url
+      ? {
+          href: item.url,
+          target: item.url.startsWith("mailto") ? "_self" : "_blank",
+          rel: "noopener noreferrer",
+        }
+      : {};
 
   return (
     <Tag
@@ -178,7 +187,7 @@ export function BentoContent({
       <div className="relative flex-1 min-h-0 flex flex-col">
         <div className="cursor-target flex-1 grid grid-cols-2 min-h-0">
           {items.map((item, i) => (
-            <Item key={i} item={item} />
+            <Item key={i} item={item} asLink />
           ))}
         </div>
       </div>

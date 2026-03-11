@@ -91,6 +91,7 @@ export const workExperience = [
       { name: "AWS", image: "/tech_logos/aws.png" },
     ],
     images: ["/logos/cac.png", "/logos/osmium.png"],
+    url: "https://cube.exchange/",
   },
   {
     title: "NATION",
@@ -113,6 +114,7 @@ export const workExperience = [
       { name: "Expo", image: "/tech_logos/expo.png" },
     ],
     images: [],
+    url: "https://www.nation.io/",
   },
 ];
 
@@ -132,6 +134,7 @@ export const projects = [
       { name: "React", image: "/tech_logos/react.png" },
     ],
     images: ["screenshots/2.png", "screenshots/1.png"],
+    url: "https://bloomcore.app",
   },
   {
     title: "Osmium - Financial Tracker",
@@ -165,14 +168,12 @@ export const projects = [
     ],
     backgroundColor: "#fff",
     techStack: [
-      { name: "Solana", image: "/tech_logos/solana.png" },
+      { name: "Solana Smart Contracts", image: "/tech_logos/solana.png" },
       { name: "Rust", image: "/tech_logos/rust.png" },
       { name: "React", image: "/tech_logos/react.png" },
     ],
     images: [],
-    previewLink: {
-      url: "https://solana.com/news/announcing-winners-of-the-solana-season-hackathon",
-    },
+    url: "https://solana.com/news/announcing-winners-of-the-solana-season-hackathon",
   },
   {
     title: "Congressional App Challenge",
@@ -193,6 +194,7 @@ export const projects = [
       { name: "SQL", image: "/tech_logos/psql.png" },
     ],
     images: [],
+    url: "https://www.congressionalappchallenge.us/20-il10/",
   },
 ];
 
@@ -206,7 +208,7 @@ export const education = [
   //   },
   {
     school: "Ohio State University",
-    degree: "B.S. Computer Science & Engineering",
+    degree: "B.S. Computer Science",
     spec: "Specialization in Networking",
     location: "Columbus, OH",
     date: "Aug 2021 - May 2025",

@@ -42,21 +42,100 @@ export function ExpandedPanel({ item }: ExpandedPanelProps) {
               style={{ filter: item.image.invert ? "invert(1)" : undefined }}
             />
           )}
-          <div className="text-right ml-auto">
+          <div className="text-right ml-auto flex flex-col items-end gap-2">
             {item.sublabel && (
-              <p className="text-white/80 text-base font-semibold">
+              <p className="text-white/90 text-xl font-bold leading-tight">
                 {item.sublabel}
               </p>
             )}
-            {item.label && (
-              <p className="text-white/50 text-sm mt-1">{item.label}</p>
-            )}
-            {item.date && (
-              <p className="text-white/40 text-sm mt-1">{item.date}</p>
-            )}
-            {item.location && (
-              <p className="text-white/30 text-sm">{item.location}</p>
-            )}
+            <div className="flex flex-col items-end gap-1.5">
+              <div className="flex flex-wrap justify-end gap-1.5">
+              {item.date && (
+                <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-white/10 border border-white/15 text-white/60 text-xs font-medium">
+                  <svg
+                    width="10"
+                    height="10"
+                    viewBox="0 0 12 12"
+                    fill="none"
+                    className="shrink-0"
+                  >
+                    <rect
+                      x="1"
+                      y="2"
+                      width="10"
+                      height="9"
+                      rx="1.5"
+                      stroke="currentColor"
+                      strokeWidth="1.2"
+                    />
+                    <path
+                      d="M4 1v2M8 1v2M1 5h10"
+                      stroke="currentColor"
+                      strokeWidth="1.2"
+                      strokeLinecap="round"
+                    />
+                  </svg>
+                  {item.date}
+                </span>
+              )}
+              {item.location && (
+                <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-white/10 border border-white/15 text-white/60 text-xs font-medium">
+                  <svg
+                    width="10"
+                    height="10"
+                    viewBox="0 0 12 12"
+                    fill="none"
+                    className="shrink-0"
+                  >
+                    <path
+                      d="M6 1a3.5 3.5 0 0 1 3.5 3.5C9.5 7.5 6 11 6 11S2.5 7.5 2.5 4.5A3.5 3.5 0 0 1 6 1Z"
+                      stroke="currentColor"
+                      strokeWidth="1.2"
+                    />
+                    <circle cx="6" cy="4.5" r="1" fill="currentColor" />
+                  </svg>
+                  {item.location}
+                </span>
+              )}
+              </div>
+              {item.url && (
+                <a
+                  href={item.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-white/10 border border-white/15 text-white/60 text-xs font-medium hover:bg-white/20 hover:text-white/90 transition-colors"
+                >
+                  <svg
+                    width="10"
+                    height="10"
+                    viewBox="0 0 12 12"
+                    fill="none"
+                    className="shrink-0"
+                  >
+                    <path
+                      d="M5 2H2.5A1.5 1.5 0 0 0 1 3.5v6A1.5 1.5 0 0 0 2.5 11h6A1.5 1.5 0 0 0 10 9.5V7"
+                      stroke="currentColor"
+                      strokeWidth="1.2"
+                      strokeLinecap="round"
+                    />
+                    <path
+                      d="M7 1h4v4"
+                      stroke="currentColor"
+                      strokeWidth="1.2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                    <path
+                      d="M11 1 6 6"
+                      stroke="currentColor"
+                      strokeWidth="1.2"
+                      strokeLinecap="round"
+                    />
+                  </svg>
+                  {new URL(item.url).hostname.replace(/^www\./, "")}
+                </a>
+              )}
+            </div>
           </div>
         </div>
 
