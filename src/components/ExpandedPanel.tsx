@@ -30,8 +30,9 @@ export function ExpandedPanel({ item }: ExpandedPanelProps) {
         style={{ backgroundColor: "black", opacity: 0.9 }}
       />
 
-      {/* Scrollable content */}
-      <div className="relative flex flex-col h-full p-6 gap-3 backdrop-blur-md overflow-y-auto">
+      {/* Scrollable content + sticky footer */}
+      <div className="relative flex flex-col h-full backdrop-blur-md">
+      <div className="flex flex-col flex-1 min-h-0 p-6 gap-3 overflow-y-auto">
         {/* ── Row 1: logo left, role + date right ── */}
         <div className="flex items-start justify-between gap-4 max-h-[120px]">
           {item.image && (
@@ -217,9 +218,11 @@ export function ExpandedPanel({ item }: ExpandedPanelProps) {
           <ImageGrid images={item.images} />
         )}
 
-        {/* ── Row 4: tech stack logos (pinned to bottom) ── */}
+      </div>
+
+        {/* ── Tech stack — sticky footer ── */}
         {item.techStack && item.techStack.length > 0 && (
-          <div className="mt-auto pt-4 border-t border-white/10 flex flex-wrap gap-4 items-center justify-between">
+          <div className="shrink-0 px-6 py-4 border-t border-white/10 flex flex-wrap gap-4 items-center justify-between">
             <div className="flex flex-wrap gap-4 items-center">
               {item.techStack.map((tech, i) =>
                 tech.image ? (

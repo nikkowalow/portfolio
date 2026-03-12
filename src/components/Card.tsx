@@ -56,7 +56,7 @@ export function Card({
         rowSpanMap[rowSpan],
         colStart ? colStartMap[colStart] : "",
         rowStart ? rowStartMap[rowStart] : "",
-        "rounded-2xl border border-white/8 bg-white/3",
+        "rounded-2xl border border-white/8 bg-black/3",
         flush ? "p-0 overflow-hidden" : "p-5 overflow-hidden",
         "transition-colors duration-200 hover:border-white/12",
         "flex flex-col",

@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useCallback, useMemo } from "react";
 
 const DEFAULT_INNER_GRADIENT =
-  "linear-gradient(145deg,#60496e8c 0%,#71C4FF44 100%)";
+  "linear-gradient(145deg,#1a0f2200 0%,#0a1a2e22 100%)";
 
 const ANIMATION_CONFIG = {
   INITIAL_DURATION: 1200,
@@ -398,7 +398,7 @@ const ProfileCardComponent: React.FC<ProfileCardProps> = ({
       "--icon": iconUrl ? `url(${iconUrl})` : "none",
       "--grain": grainUrl ? `url(${grainUrl})` : "none",
       "--inner-gradient": innerGradient ?? DEFAULT_INNER_GRADIENT,
-      "--behind-glow-color": behindGlowColor ?? "rgba(125, 190, 255, 0.67)",
+      "--behind-glow-color": behindGlowColor ?? "rgba(60, 100, 160, 0.35)",
       "--behind-glow-size": behindGlowSize ?? "50%",
       "--pointer-x": "50%",
       "--pointer-y": "50%",
@@ -525,16 +525,6 @@ const ProfileCardComponent: React.FC<ProfileCardProps> = ({
         } as React.CSSProperties
       }
     >
-      {behindGlowEnabled && (
-        <div
-          className="absolute inset-0 z-0 pointer-events-none transition-opacity duration-200 ease-out"
-          style={{
-            background: `radial-gradient(circle at var(--pointer-x) var(--pointer-y), var(--behind-glow-color) 0%, transparent var(--behind-glow-size))`,
-            filter: "blur(50px) saturate(1.1)",
-            opacity: "calc(0.8 * var(--card-opacity))",
-          }}
-        />
-      )}
       <div ref={shellRef} className="relative z-[1] group h-full">
         <section
           className="grid relative overflow-hidden"
@@ -542,12 +532,11 @@ const ProfileCardComponent: React.FC<ProfileCardProps> = ({
             height: "100%",
             containerType: "size",
             borderRadius: cardRadius,
-            backgroundBlendMode: "color-dodge, normal, normal, normal",
             boxShadow:
               "rgba(0, 0, 0, 0.8) calc((var(--pointer-from-left) * 10px) - 3px) calc((var(--pointer-from-top) * 20px) - 6px) 20px -5px",
             transition: "transform 1s ease",
             transform: "translateZ(0) rotateX(0deg) rotateY(0deg)",
-            background: "rgba(0, 0, 0, 0.9)",
+            background: "transparent",
             backfaceVisibility: "hidden",
           }}
           onMouseEnter={(e) => {
@@ -569,19 +558,12 @@ const ProfileCardComponent: React.FC<ProfileCardProps> = ({
           <div
             className="absolute inset-0"
             style={{
-              backgroundImage: "var(--inner-gradient)",
-              backgroundColor: "rgba(0, 0, 0, 0.9)",
+              backgroundColor: "rgba(0,0,0,0.7)",
               borderRadius: cardRadius,
               display: "grid",
               gridArea: "1 / -1",
             }}
           >
-            {/* Shine layer */}
-            <div style={shineStyle} />
-
-            {/* Glare layer */}
-            <div style={glareStyle} />
-
             {/* Avatar content */}
             <div
               className="overflow-visible"
@@ -611,82 +593,6 @@ const ProfileCardComponent: React.FC<ProfileCardProps> = ({
                   t.style.display = "none";
                 }}
               />
-              {showUserInfo && (
-                <div
-                  className="absolute z-[2] flex items-center justify-between backdrop-blur-[30px] border border-white/10 pointer-events-auto"
-                  style={
-                    {
-                      "--ui-inset": "4cqw",
-                      "--ui-radius-bias": "6px",
-                      bottom: "var(--ui-inset)",
-                      left: "var(--ui-inset)",
-                      right: "var(--ui-inset)",
-                      background: "rgba(255, 255, 255, 0.1)",
-                      borderRadius:
-                        "calc(max(0px, var(--card-radius) - var(--ui-inset) + var(--ui-radius-bias)))",
-                      padding: "2.5cqw 3cqw",
-                    } as React.CSSProperties
-                  }
-                >
-                  <div className="flex items-center gap-3">
-                    <div
-                      className="rounded-full overflow-hidden border border-white/10 flex-shrink-0"
-                      style={{
-                        width: "clamp(28px, 10cqw, 48px)",
-                        height: "clamp(28px, 10cqw, 48px)",
-                      }}
-                    >
-                      <img
-                        className="w-full h-full object-cover rounded-full"
-                        src={miniAvatarUrl || avatarUrl}
-                        alt={`${name || "User"} mini avatar`}
-                        loading="lazy"
-                        style={{
-                          display: "block",
-                          gridArea: "auto",
-                          borderRadius: "50%",
-                          pointerEvents: "auto",
-                        }}
-                        onError={(e) => {
-                          const t = e.target as HTMLImageElement;
-                          t.style.opacity = "0.5";
-                          t.src = avatarUrl;
-                        }}
-                      />
-                    </div>
-                    <div className="flex flex-col items-start gap-1.5">
-                      <div
-                        className="font-medium text-white/90 leading-none"
-                        style={{ fontSize: "clamp(9px, 3.5cqw, 14px)" }}
-                      >
-                        @{handle}
-                      </div>
-                      <div
-                        className="text-white/70 leading-none"
-                        style={{ fontSize: "clamp(9px, 3cqw, 13px)" }}
-                      >
-                        {status}
-                      </div>
-                    </div>
-                  </div>
-                  <button
-                    className="border border-white/10 rounded-lg font-semibold text-white/90 cursor-pointer backdrop-blur-[10px] transition-all duration-200 ease-out hover:border-white/40 hover:-translate-y-px"
-                    style={{
-                      fontSize: "clamp(9px, 2.8cqw, 12px)",
-                      padding: "2cqw 2.5cqw",
-                      pointerEvents: "auto",
-                      display: "block",
-                      gridArea: "auto",
-                      borderRadius: "8px",
-                    }}
-                    onClick={handleContactClick}
-                    type="button"
-                    aria-label={`Contact ${name || "user"}`}
-                  >
-                    {contactText}
-                  </button>
-                </div>
-              )}
             </div>
 
             {/* Details content */}

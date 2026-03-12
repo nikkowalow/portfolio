@@ -184,17 +184,12 @@ function App() {
             className="profile"
             name="Nikko Kowalow"
             title="Software Engineer"
-            handle="nikkokowalow"
-            status="Online"
-            contactText="Contact Me"
-            avatarUrl="/images/pfp.jpg"
-            showUserInfo
+            avatarUrl="/images/pfp-transparent.png"
             enableTilt
             enableMobileTilt={false}
-            behindGlowColor="rgba(125, 190, 255, 0.67)"
-            iconUrl="/textures/iconpattern.png"
+            // iconUrl="/textures/iconpattern.png"
             behindGlowEnabled
-            innerGradient="linear-gradient(145deg,#60496e8c 0%,#71C4FF44 100%)"
+            innerGradient="linear-gradient(145deg,#0d061500 0%,#03080e18 100%)"
           />
 
           <Card flush className="education">
