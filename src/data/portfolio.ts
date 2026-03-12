@@ -36,6 +36,14 @@ export const osmiumImage = {
   height: 200,
 };
 
+export const orderbookImage = {
+  src: "/formia/orderbook.png",
+  altSrc: "/logos/orderbook.png",
+  alt: "Order Book Simulator",
+  width: 280,
+  height: 200,
+};
+
 export const congressionalAppChallengeImage = {
   src: "/formia/cac.png",
   altSrc: "/logos/cac.png",
@@ -72,7 +80,7 @@ export const lfhsImage = {
 export const workExperience = [
   {
     title: "Cube Exchange",
-    role: "Software Engineer Intern",
+    role: "Backend Software Engineer",
     location: "Chicago, IL",
     date: "May 2024 - Aug 2024",
     bullets: [
@@ -80,6 +88,8 @@ export const workExperience = [
       "Built automated portfolio rebalancing and a historical price aggregation service.",
       "Designed RESTful API endpoints and an internal admin dashboard for ops and monitoring.",
     ],
+    description:
+      "During my internship at Cube Exchange, I worked on backend infrastructure for a high-performance crypto trading platform, primarily contributing to the development of a multi-asset “bundles” trading feature. Bundles function similarly to ETFs, allowing users to execute a single order that simultaneously buys or sells multiple cryptocurrencies (such as BTC, ETH, and SOL) according to predefined allocation weights. I implemented atomic all-or-none execution logic to ensure bundle integrity, meaning that if any individual asset leg could not be executed due to liquidity or market constraints, the entire bundle order would fail rather than partially fill and leave the portfolio in an unintended state. In addition to the execution logic, I built historical bundle price feeds that aggregate market data across multiple underlying assets and time intervals to compute the true composite price of a bundle, enabling accurate performance tracking, visualization, and analytics. This required combining price data across assets and storing aggregated results for efficient querying. The system was implemented primarily in Rust with PostgreSQL for persistence, with supporting work across TypeScript/React components and scripting tools for data processing and analysis. Improvements to bundle validation and execution logic reduced failed bundle orders on low-liquidity markets by approximately 18%, improving reliability and user experience for multi-asset trading.",
     image: cubeImage,
     backgroundColor: "rgb(253,212,57)",
     techStack: [
@@ -90,14 +100,15 @@ export const workExperience = [
       { name: "Docker", image: "/tech_logos/docker.png" },
       { name: "AWS", image: "/tech_logos/aws.png" },
     ],
-    images: ["/logos/cac.png", "/logos/osmium.png"],
     url: "https://cube.exchange/",
   },
   {
     title: "NATION",
-    role: "Software Engineer Intern",
+    role: "Full-Stack Software Engineer",
     location: "Chicago, IL",
     date: "Jun 2023 - Aug 2023",
+    description:
+      "During my internship at Nation, I worked as a full-stack software engineer contributing to both web and mobile products across the company’s platform and its film-investment subsidiary, Flare. I developed features for the Nation.io web application, including implementing a user comments system and additional UI improvements using React and TypeScript. I also helped build a mobile application using React Native that enables venture capital investors to fund film projects through the Flare platform. The app allows filmmakers to submit funding requests for their movie projects and enables investors to browse opportunities and allocate capital, receiving a share of profits if the film performs successfully. On the backend, I worked with Supabase to manage application data and authentication while integrating APIs that support project submissions, investment flows, and user management. In addition, I built an internal admin dashboard used by the team to review and approve funding requests, manage investor activity, and configure operational features such as push notifications and access control. This work involved designing UI components, connecting frontend flows to backend services, and ensuring that both investor-facing and internal tools operated smoothly across web and mobile environments.",
     bullets: [
       "Mobile front-end with React Native; web app in React + TypeScript; Python backend.",
       "Implemented LSB steganography for secure hidden data transmission within media files.",
@@ -135,12 +146,17 @@ export const projects = [
     ],
     images: ["screenshots/2.png", "screenshots/1.png"],
     url: "https://bloomcore.app",
+    githubUrl: "https://github.com/nikkowalow/order-book-simulator",
+    description:
+      "Built a full-stack simulation of a modern electronic exchange, implementing a price–time priority limit order book and matching engine in C++ with deterministic matching, partial fills, and multi-level order sweeps. The system exposes an HTTP REST API for order entry and market data queries, a real-time WebSocket feed for streaming trades and book state, and a React UI for visualizing order flow and market depth. Internally, the engine uses PMR pool allocators for low-latency order storage, append-only JSONL journaling for trades and order lifecycle events, and a modular fan-out architecture to decouple matching logic from downstream consumers. Additional components include automated market-making and trading bot strategies, per-user position tracking with balance validation, and benchmarking tools that measure p50/p90/p99 order processing latency under different market scenarios.",
   },
   {
     title: "Osmium - Financial Tracker",
     location: "Hackathon",
     date: "2022",
     image: osmiumImage,
+    description:
+      "I developed a real-time net worth aggregation platform as a mobile application built with React Native and TypeScript, backed by a PostgreSQL database and hosted backend services on Render. The platform consolidates a user’s financial data across multiple sources—including bank accounts, brokerage accounts, cryptocurrency exchanges, and alternative assets such as real estate—to compute a unified and continuously updated view of total net worth. I integrated Plaid to securely connect traditional banking and brokerage accounts, while implementing additional OAuth 2.0 connectors for cryptocurrency platforms such as Coinbase to retrieve wallet balances and transaction data. The system aggregates asset values using external market price feeds and normalizes them into a single portfolio model that updates in real time. To support historical performance analysis, I designed a time-series data pipeline using TimescaleDB to store periodic net worth snapshots and enable efficient queries for historical trends and asset-category breakdowns. On the frontend, I used Zustand for lightweight global state management to ensure fast updates across the application when account balances or market prices change. The result is a responsive financial dashboard that provides users with a comprehensive, real-time view of their financial position across disparate financial platforms.",
     bullets: [
       "Built a personal finance tracker with automated categorization and spending insights.",
       "Integrated with bank APIs via Plaid for real-time transaction sync.",
@@ -162,6 +178,8 @@ export const projects = [
     date: "June 2021",
     award: 3,
     image: solanaImage,
+    description:
+      "I built Bubl, a decentralized event ticketing platform created during the Solana Season Hackathon, where the project placed 3rd in the NFT Track and was awarded $5,000. The platform was designed to reduce ticketing fees, prevent fraudulent resale, and address issues such as counterfeit tickets and scalping in secondary markets. Using Solana smart contracts written in Rust, each ticket is minted as an NFT and stored entirely on-chain, enabling verifiable ownership and a transparent transfer history for every ticket. This architecture allows secure peer-to-peer resale while giving event organizers more control over distribution and pricing without relying on centralized ticketing intermediaries. I built the frontend using React and TypeScript to provide a wallet-connected interface where users can purchase, transfer, and manage their tickets directly through the Solana network. By leveraging Solana’s high-throughput, low-fee infrastructure, the platform enables fast transactions and significantly lower costs compared to traditional ticketing systems, while maintaining a fully decentralized model for ticket issuance, ownership, and resale.",
     bullets: [
       "Built a decentralized ticketing platform on Solana using Rust, React, and smart contracts.",
       "Eliminated fraudulent tickets and secondary market inflation via blockchain verification.",
@@ -181,6 +199,8 @@ export const projects = [
     date: "2020",
     award: 1,
     image: congressionalAppChallengeImage,
+    description:
+      "I developed SkinID, an AI-powered skin cancer pre-diagnosis application created for the Congressional App Challenge, where the project was awarded 1st place in Illinois’ 10th Congressional District by Congressman Brad Schneider. Working alongside a teammate, we built a system that allows users to photograph skin lesions using a mobile application and receive an early risk assessment for potential skin cancer. The mobile app was developed in Swift with a camera-based scanning feature, while the backend was implemented in Python using FastAPI with a SQL database to manage user data and image analysis results. The core of the system leveraged a machine learning model trained on the HAM10000 dermatology dataset, which contains labeled images of benign and malignant skin lesions. By applying computer vision techniques and supervised learning on this dataset, the model was able to classify potential skin conditions with an accuracy of approximately 83%. A Vue-based web interface was also developed to support administrative review and data visualization. The project was designed as an accessible early screening tool to help users identify potentially dangerous skin abnormalities and encourage earlier medical consultation.",
     bullets: [
       "Built a skin cancer pre-diagnosis suite awarded 1st place in Illinois.",
       "Trained an ML model to classify benign vs. malignant lesions at 83% accuracy.",
@@ -199,13 +219,6 @@ export const projects = [
 ];
 
 export const education = [
-  //   {
-  //     school: "Lake Forest High School",
-  //     location: "Lake Forest, IL",
-  //     date: "Aug 2017 – May 2021",
-  //     image: lfhsImage,
-  //     backgroundColor: "rgb(41,68,151)",
-  //   },
   {
     school: "Ohio State University",
     degree: "B.S. Computer Science",
@@ -214,6 +227,37 @@ export const education = [
     date: "Aug 2021 - May 2025",
     image: ohioStateImage,
     backgroundColor: "rgb(191,12,25)",
+    activities: ["Pi Lambda Phi", "HackOHI/O"],
+    coursework: [
+      {
+        name: "Cryptography",
+        url: "https://syllabi.engineering.osu.edu/syllabi/cse_5351",
+      },
+      {
+        name: "Network Security",
+        url: "https://syllabi.engineering.osu.edu/syllabi/cse_5473",
+      },
+      {
+        name: "AI",
+        url: "https://syllabi.engineering.osu.edu/syllabi/cse_3521",
+      },
+      {
+        name: "Operating Systems",
+        url: "https://syllabi.engineering.osu.edu/syllabi/cse_2431",
+      },
+      {
+        name: "Data Structures",
+        url: "https://syllabi.engineering.osu.edu/syllabi/cse_2331",
+      },
+      {
+        name: "Linear Algebra",
+        url: "https://math.osu.edu/courses/math-2568",
+      },
+      {
+        name: "Software Engineering",
+        url: "https://syllabi.engineering.osu.edu/syllabi/cse_2231",
+      },
+    ],
   },
 ];
 

@@ -24,6 +24,10 @@ export interface ContentItem {
   techStack?: { name: string; image?: string }[];
   /** Extra images shown in expanded panel */
   images?: string[];
+  description?: string;
+  githubUrl?: string;
+  activities?: string[];
+  coursework?: { name: string; url?: string }[];
   image?: {
     src: string;
     altSrc?: string;

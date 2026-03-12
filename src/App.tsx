@@ -44,6 +44,7 @@ const workItems: ContentItem[] = workExperience.map((j) => ({
   techStack: j.techStack,
   images: j.images,
   url: j.url,
+  description: j.description,
 }));
 
 const projectItems: ContentItem[] = projects.map((p) => ({
@@ -56,6 +57,8 @@ const projectItems: ContentItem[] = projects.map((p) => ({
   techStack: p.techStack,
   images: p.images,
   url: p.url,
+  githubUrl: p.githubUrl,
+  description: p.description,
 }));
 
 const educationItems: ContentItem[] = education.map((e) => ({
@@ -65,6 +68,8 @@ const educationItems: ContentItem[] = education.map((e) => ({
   date: e.date,
   location: e.location,
   image: e.image,
+  activities: e.activities,
+  coursework: e.coursework,
   backgroundColor: e.backgroundColor,
   techStack: (e as any).techStack,
   images: (e as any).images,
